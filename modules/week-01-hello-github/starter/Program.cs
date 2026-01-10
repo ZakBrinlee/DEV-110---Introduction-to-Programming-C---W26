@@ -5,6 +5,6 @@ public class Program
     public static void Main(string[] args)
     {
         // TODO: Write code that outputs "Hello, GitHub!" to the console
-        Console.Write("Hello, GitHub");
+        Console.WriteLine("Hello, GitHub!");
     }
 }
