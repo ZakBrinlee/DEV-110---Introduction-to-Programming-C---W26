@@ -80,7 +80,12 @@ jobs:
       - name: Check code formatting
         run: |
           cd modules/${{ needs.detect-assignment.outputs.assignment }}/starter
-          dotnet format --verify-no-changes --verbosity diagnostic
+          # Find and format the solution file if it exists, otherwise use the project file
+          if [ -f *.sln ]; then
+            dotnet format *.sln --verify-no-changes --verbosity diagnostic
+          else
+            dotnet format *.csproj --verify-no-changes --verbosity diagnostic
+          fi
         continue-on-error: true
         id: format-check
 
