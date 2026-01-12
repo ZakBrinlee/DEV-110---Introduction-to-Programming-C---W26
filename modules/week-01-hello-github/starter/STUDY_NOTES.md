@@ -66,6 +66,7 @@ Answer: Becasue to isolate work, enable parallel development, and manage differe
 ## What I Learned
 
 **Key takeaways from this week:**
+[What are the 3 most important things you learned?]
 
 1. I learned how to write and run basic C# programs using the console.
 2. I learned how development tools like the .NET SDK and JDK work to build and run programs.
