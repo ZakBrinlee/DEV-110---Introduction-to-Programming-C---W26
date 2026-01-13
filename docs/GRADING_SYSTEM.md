@@ -23,7 +23,10 @@ This repository uses GitHub Actions to automatically test and grade student assi
 
     - Write your code in the `starter/` folder
     - Fill out `STUDY_NOTES.md` with your reflections
-    - Test locally using: `./test 2` (replace 2 with your week number)
+    - Test locally using:
+        - Mac/Linux: `./test 2`
+        - Windows: `dotnet test modules\week-02-calculator-lite\tests`
+    - (Replace 2 with your week number)
 
 3. **Commit your changes:**
 
@@ -100,8 +103,13 @@ If tests fail:
 1. **Read the error messages carefully** - They contain hints about what's wrong
 2. **Test locally first:**
    ```bash
+   # Mac/Linux:
    cd modules/week-XX-assignment/starter
    ../../../test XX  # Run from anywhere in the project
+
+   # Windows:
+   cd modules\week-XX-assignment\starter
+   dotnet test ..\..\..\modules\week-XX-assignment\tests
 ````
 
 3. **Make your corrections**
@@ -178,7 +186,7 @@ Rounded to nearest integer.
 
 ## Best Practices
 
-1. **Test locally before pushing** - Use `./test XX` to catch issues early
+1. **Test locally before pushing** - Mac/Linux: `./test XX` / Windows: `dotnet test modules\week-XX-assignment\tests` to catch issues early
 2. **Read error messages completely** - They contain specific hints
 3. **Commit often** - Small commits are easier to debug
 4. **Use descriptive commit messages** - "Fixed calculator bug" not "stuff"
@@ -193,13 +201,22 @@ Rounded to nearest integer.
 ```bash
 # Week 2 assignment
 git checkout -b assignment/week-02
+
+# Mac/Linux:
 cd modules/week-02-calculator-lite/starter
+
+# Windows:
+cd modules\week-02-calculator-lite\starter
 
 # Edit Program.cs
 code Program.cs
 
 # Test locally
+# Mac/Linux:
 ../../../test 2
+
+# Windows:
+dotnet test ..\..\..\modules\week-02-calculator-lite\tests
 
 # Commit
 git add .
@@ -261,8 +278,13 @@ Your assignment meets all requirements and is ready for review.
 
 1. Review the failed tests above
 2. Run tests locally to debug:
+
     ```bash
+    # Mac/Linux:
     ./test 2
+
+    # Windows:
+    dotnet test modules\week-02-calculator-lite\tests
     ```
 ````
 
