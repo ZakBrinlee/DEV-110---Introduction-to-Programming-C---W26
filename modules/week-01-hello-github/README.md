@@ -45,7 +45,11 @@
 ### Step 1: Navigate to This Module
 
 ```bash
+# Mac/Linux:
 cd modules/week-01-hello-github/starter
+
+# Windows:
+cd modules\week-01-hello-github\starter
 ```
 
 ### Step 2: Run the Starter Code
@@ -69,7 +73,11 @@ Open `Program.cs` and add code to print "Hello, GitHub!"
 dotnet run
 
 # Run the automated tests
+# Mac/Linux:
 dotnet test ../tests
+
+# Windows:
+dotnet test ..\tests
 ```
 
 ### Step 5: Complete STUDY_NOTES.md

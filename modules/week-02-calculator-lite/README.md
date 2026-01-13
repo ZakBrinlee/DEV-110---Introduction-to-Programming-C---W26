@@ -146,7 +146,11 @@ Thank you for using Calculator Lite!
 1. Navigate to the starter folder:
 
     ```bash
+    # Mac/Linux:
     cd modules/week-02-calculator-lite/starter
+
+    # Windows:
+    cd modules\week-02-calculator-lite\starter
     ```
 
 2. Review the TODO comments in `Program.cs`
@@ -158,8 +162,13 @@ Thank you for using Calculator Lite!
     ```
 
 4. Test your work:
+
     ```bash
+    # Mac/Linux:
     dotnet test ../tests
+
+    # Windows:
+    dotnet test ..\tests
     ```
 
 ---
