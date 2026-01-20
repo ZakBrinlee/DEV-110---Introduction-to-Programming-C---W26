@@ -6,43 +6,65 @@ public class Program
     {
         Console.WriteLine("=== Calculator Lite ===\n");
 
-        // TODO: Declare variables for storing user input (use descriptive names)
-        // Hint: You'll need variables for two numbers, user name, and calculation choice
+        Console.Write("Please enter your name: ");
+        string userName = Console.ReadLine();
+        Console.WriteLine($"Hello {userName}!");
 
-        // TODO: Ask for user's name (string) and greet them
-        // Example: "Enter your name: " then "Hello, [name]!"
+        Console.Write("\nUse decimal precision (yes/no): ");
+        string userInputDecimal = Console.ReadLine();
 
-        // TODO: Ask if they want to use decimals (bool)
-        // Example: "Use decimal precision? (yes/no): "
-        // Store as boolean (true for yes, false for no)
+        // I want both “yes” and “y” to work. Therefore, I am not checking inline.
+        bool useDecimal = userInputDecimal == "yes" || userInputDecimal == "y";
 
-        // TODO: Prompt user for first number (double or int based on choice)
-        // If decimals: use double.Parse()
-        // If no decimals: use int.Parse() then cast to double
+        int numOfCalculations = 7;
 
-        // TODO: Prompt user for second number (same type as first)
+        Console.Write("Enter the first number: ");
+        double num1 = double.Parse(Console.ReadLine());
+        if (num1 == 0)
+        {
+            numOfCalculations -= 1;
+        }
 
-        // TODO: Calculate ALL arithmetic operations:
-        // - sum (addition: +)
-        // - difference (subtraction: -)
-        // - product (multiplication: *)
-        // - quotient (division: /)
-        // - remainder (modulus: %)
-        // - average ((num1 + num2) / 2)
+        Console.Write("Enter the second number: ");
+        double num2 = double.Parse(Console.ReadLine());
+        if (num2 == 0)
+        {
+            numOfCalculations -= 2;
+        }
 
-        // TODO: Display results with proper formatting
-        // Show 2 decimal places: {value:F2}
-        // Include descriptive labels for each operation
+        if (useDecimal)
+        {
+            // If decimal is requested.
+            Console.WriteLine($"Sum: {num1:F2} + {num2:F2} = {num1 + num2:F2}");
+            Console.WriteLine($"Difference: {num1:F2} - {num2:F2} = {num1 - num2:F2}");
+            Console.WriteLine($"Product: {num1:F2} * {num2:F2} = {num1 * num2:F2}");
 
-        // TODO: Check if second number is zero BEFORE dividing
-        // Use if statement: if (num2 == 0) { show error } else { calculate }
+            // Ternary operators used to check for division by zero.
+            Console.WriteLine(num2 == 0 ? "Division cannot be performed because of division by zero" : $"Quotient: {num1:F2} / {num2:F2} = {num1 / num2:F2}");
+            Console.WriteLine(num2 == 0 ? "Modulus cannot be performed because of division by zero" : $"Modulus: {num1:F2} % {num2:F2} = {num1 % num2:F2}");
+            Console.WriteLine($"Average: {num1:F2} + {num2:F2} / 2.00 = {(num1 + num2) / 2:F2}");
 
-        // TODO: Count total calculations performed (int)
-        // Display: "Performed [count] calculations for [name]!"
+            // Ternary operators used to check for division by zero.
+            Console.WriteLine(num1 == 0 ? "Percent difference cannot be performed because of division by zero." : $"Percent difference: ({num1:F2} - {num2:F2}) / {num1:F2} * 100.00 = {(num1 - num2) / num1 * 100:F2}");
+        }
+        else
+        {
+            // If decimal is not requested.
+            Console.WriteLine($"Sum: {num1:F0} + {num2:F0} = {num1 + num2:F0}");
+            Console.WriteLine($"Difference: {num1:F0} - {num2:F0} = {num1 - num2:F0}");
+            Console.WriteLine($"Product: {num1:F0} * {num2:F0} = {num1 * num2:F0}");
 
-        // TODO: Calculate percentage difference
-        // Formula: ((num1 - num2) / num1) * 100
-        // Display with % symbol
+            // Ternary operators used to check for division by zero.
+            Console.WriteLine(num2 == 0 ? "Division cannot be performed because of division by zero" : $"Quotient: {num1:F0} / {num2:F0} = {num1 / num2:F0}");
+            Console.WriteLine(num2 == 0 ? "Modulus cannot be performed because of division by zero" : $"Modulus: {num1:F0} % {num2:F0} = {num1 % num2:F0}");
+            Console.WriteLine($"Average: {num1:F0} + {num2:F0} / 2 = {(num1 + num2) / 2:F0}");
+
+            // Ternary operators used to check for division by zero.
+            Console.WriteLine(num1 == 0 ? "Percent difference cannot be performed because of division by zero" : $"Percent difference: ({num1:F0} - {num2:F0}) / {num1:F0} * 100 = {(num1 - num2) / num1 * 100:F0}");
+        }
+
+        Console.WriteLine($"Performed {numOfCalculations} calculations for {userName}!");
+
         Console.WriteLine("\nThank you for using Calculator Lite!");
     }
 }
