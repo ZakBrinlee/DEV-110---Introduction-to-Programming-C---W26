@@ -1,151 +1,138 @@
 # Week 2: Calculator Lite - Study Notes
 
 **Name:**
+Ujwal Garine
 
 ## Understanding Data Types
 
 **What are the four data types you used in this assignment?**
-[List each data type (string, bool, int, double) and explain what kind of data each one stores]
 
-Answer:
+- **string**: Stores text such as the user’s name and yes/no input
+- **bool**: Stores true or false values, used for the decimal precision choice
+- **int**: Stores whole numbers, used for counting calculations
+- **double**: Stores numbers with decimals, used for all mathematical operations
 
 **Why did we use `double` instead of `int` for the calculations?**
-[Explain the difference between int and double, and why double is better for this calculator]
 
-Answer:
+`int` only stores whole numbers, which would remove decimal values. `double` allows decimal precision, which is important for division, averages, and percentage calculations.
 
 **How do you convert a string to a boolean?**
-[Explain how you converted the user's "yes/no" input into a true/false value]
 
-Answer:
+I compared the user’s input to the string `"yes"`. If it matched, the boolean was set to `true`; otherwise, it was set to `false`.
 
 ## Challenges and Solutions
 
 **Biggest challenge with this assignment:**
-[What was the hardest part? Understanding data types, getting user input, performing calculations, formatting output, or handling division by zero?]
 
-Answer:
+Handling division by zero without crashing the program.
 
 **How you solved it:**
-[Explain what you did to overcome the challenge - reviewed documentation, asked for help, tested different approaches, etc.]
 
-Answer:
+I used conditional `if` statements to check if a number was zero before performing division, modulus, or percentage calculations.
 
 **Most confusing concept:**
-[What was hardest to understand? Parsing input, modulus operator, percentage formula, conditional formatting, or something else?]
 
-Answer:
+Conditional formatting using `:F2` and `:F0`.
 
 ## Understanding Arithmetic Operations
 
 **What is the difference between the modulus operator (%) and division (/)?**
-[Explain what each operator does and give an example]
 
-Answer:
+Division (`/`) returns the quotient, while modulus (`%`) returns the remainder.
+Example: `17 / 5 = 3`, `17 % 5 = 2`.
 
 **How do you calculate the average of two numbers?**
-[Write the formula in your own words]
 
-Answer:
+Add the two numbers together and divide the result by 2.
 
 **What is the formula for percentage difference?**
-[Explain the formula you used: ((num1 - num2) / num1) * 100]
 
-Answer:
+Subtract the second number from the first, divide by the first number, then multiply by 100.
 
 ## Input and Output
 
 **How do you read user input in C#?**
-[Explain what Console.ReadLine() does and what type of data it returns]
 
-Answer:
+`Console.ReadLine()` reads input entered by the user and returns it as a string.
 
 **How do you convert string input to a number?**
-[Explain the Parse methods you used, like double.Parse()]
 
-Answer:
+I used `double.Parse()` or `int.Parse()` to convert the string input into a numeric value.
 
 **What is string interpolation and how did you use it?**
-[Explain the $ symbol and curly braces {} in Console.WriteLine()]
 
-Answer:
+String interpolation uses the `$` symbol and `{}` to insert variables directly into strings when printing output.
 
 ## Conditional Logic
 
 **How do you format numbers with 2 decimal places vs whole numbers?**
-[Explain the :F2 and :F0 format specifiers]
 
-Answer:
+I used `:F2` to display two decimal places and `:F0` to display whole numbers.
 
 **Why is it important to check for division by zero?**
-[Explain what happens if you try to divide by zero and how you handled it]
 
-Answer:
+Dividing by zero causes a runtime error, so checking prevents the program from crashing.
 
 **How did you use the boolean variable to control formatting?**
-[Explain how you used if/else to format output differently based on user preference]
 
-Answer:
+I used an `if/else` statement to select the correct format based on the user’s decimal preference.
 
 ## What I Learned
 
 **Key takeaways from this week:**
-[What are the 3-5 most important things you learned?]
 
-1.
-2.
-3.
-4.
-5.
+1. How to work with multiple data types
+2. How to safely handle user input
+3. How to prevent runtime errors
+4. How conditional logic controls program behavior
+5. How formatting improves output clarity
 
 **Which data type concept was most useful?**
-[Explain which data type (string, bool, int, or double) you found most interesting and why]
 
-Answer:
+`double`, because it allows accurate calculations with decimals.
 
 **How does conditional formatting improve user experience?**
-[Why is it helpful to let users choose decimal precision?]
 
-Answer:
+It lets users choose how detailed the output is, making the program more flexible and readable.
 
 ## Testing and Debugging
 
 **What test cases did you use to verify your program works?**
-[List the different inputs you tested - positive numbers, negative numbers, decimals, zero, etc.]
 
-Answer:
+- Positive numbers
+- Negative numbers
+- Decimal values
+- Zero as the second number
+- Both `"yes"` and `"no"` for decimal precision
 
 **What bugs or errors did you encounter and fix?**
-[Describe any errors you got and how you fixed them]
 
-Answer:
+I initially performed division before checking for zero, which caused errors. I fixed it by adding conditional checks.
 
 ## Time Spent
 
-**Total time:** [X hours]
+**Total time:** 3 hours
 
 **Breakdown:**
 
--   Understanding data types: [X hours]
--   Reading and parsing user input: [X hours]
--   Implementing arithmetic operations: [X hours]
--   Adding conditional formatting: [X hours]
--   Handling division by zero: [X hours]
--   Testing and debugging: [X hours]
--   Writing documentation: [X hours]
+- Understanding data types: 0.5 hours
+- Reading and parsing user input: 0.5 hours
+- Implementing arithmetic operations: 0.75 hours
+- Adding conditional formatting: 0.5 hours
+- Handling division by zero: 0.25 hours
+- Testing and debugging: 0.25 hours
+- Writing documentation: 0.25 hours
 
-**Most time-consuming part:** [Which aspect took the longest and why?]
+**Most time-consuming part:**
 
-Answer:
+Handling edge cases like division by zero and formatting correctly.
 
 ## Reflection
 
 **What would you do differently next time?**
-[What would you change in your approach or code?]
 
-Answer:
+I would plan edge cases earlier before writing the main logic.
 
 **How does this assignment prepare you for more complex programs?**
-[Why are these skills important for future programming tasks?]
 
-Answer:
+It builds a strong foundation in input handling, error checking, and conditional logic, which are essential for larger programs.
