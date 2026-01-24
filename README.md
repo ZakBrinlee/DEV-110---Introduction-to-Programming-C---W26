@@ -38,8 +38,8 @@ This course is organized into 12 weekly modules, each building on the previous w
 
     ```bash
     # Fork on GitHub, then clone your fork
-    git clone https://github.com/<your-username>/dev-110-setup.git
-    cd dev-110-setup
+    git clone https://github.com/<your-username>/DEV-110---Introduction-to-Programming-C---W26.git
+    cd DEV-110---Introduction-to-Programming-C---W26
     ```
 
 3. **Test Your Setup**
@@ -152,7 +152,7 @@ See [Style Guide](docs/STYLE_GUIDE.md) for detailed style rules.
 ## 📁 Repository Structure
 
 ```
-dev-110-setup/
+DEV-110---Introduction-to-Programming-C---W26/
 ├── .github/workflows/     # Automated grading & CI/CD
 ├── .vscode/              # VS Code settings
 ├── docs/                 # Course documentation

@@ -10,7 +10,7 @@ Unit tests are small programs that automatically check if your code works correc
 
 ### From Project Root (Recommended) ⭐
 
-From the **top-level project directory** (`dev-110-setup/`):
+From the **top-level project directory** (`DEV-110---Introduction-to-Programming-C---W26/`):
 
 ```bash
 # Mac/Linux:

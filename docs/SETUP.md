@@ -60,8 +60,8 @@ git --version
 ### Step 3: Clone Your Fork
 
 ```bash
-git clone https://github.com/<your-username>/dev-110-setup.git
-cd dev-110-setup
+git clone https://github.com/<your-username>/DEV-110---Introduction-to-Programming-C---W26.git
+cd DEV-110---Introduction-to-Programming-C---W26
 ```
 
 Replace `<your-username>` with your GitHub username.
@@ -120,7 +120,7 @@ dotnet run
 
 **Option 1: From project root (Recommended)**
 
-From the top-level `dev-110-setup/` directory:
+From the top-level `DEV-110---Introduction-to-Programming-C---W26/` directory:
 
 ```bash
 # Mac/Linux:
@@ -168,10 +168,10 @@ Open terminal with `` Ctrl+` `` (or `View` → `Terminal`), then navigate to pro
 ```bash
 # Navigate to project root if not already there
 # Mac/Linux:
-cd ~/dev-110-setup
+cd ~/DEV-110---Introduction-to-Programming-C---W26
 
 # Windows:
-cd C:\Users\YourUsername\dev-110-setup
+cd C:\Users\YourUsername\DEV-110---Introduction-to-Programming-C---W26
 
 # Then run tests
 # Mac/Linux:

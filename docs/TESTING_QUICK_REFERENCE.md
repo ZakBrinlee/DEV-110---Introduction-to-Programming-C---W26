@@ -4,7 +4,7 @@
 
 ### From Project Root (Recommended) ⭐
 
-From the **top-level project directory** (`dev-110-setup/`):
+From the **top-level project directory** (`DEV-110---Introduction-to-Programming-C---W26/`):
 
 ```bash
 # Mac/Linux:
@@ -75,7 +75,7 @@ dotnet test tests
 Open the integrated terminal in VS Code:
 
 -   Press `` Ctrl+` `` (backtick) or select `View` → `Terminal`
--   **Make sure you're in the project root directory** (`dev-110-setup/`)
+-   **Make sure you're in the project root directory** (`DEV-110---Introduction-to-Programming-C---W26/`)
 -   Run the test commands:
 
 ```bash
@@ -95,10 +95,10 @@ dotnet test modules\week-02-calculator-lite\tests
 ```bash
 # Navigate to project root first
 # Mac/Linux:
-cd ~/dev-110-setup
+cd ~/DEV-110---Introduction-to-Programming-C---W26
 
 # Windows:
-cd C:\Users\YourUsername\dev-110-setup
+cd C:\Users\YourUsername\DEV-110---Introduction-to-Programming-C---W26
 
 # Then run tests
 # Mac/Linux:
@@ -138,7 +138,7 @@ Read the message below it for hints on what to fix:
 
 ## Common Test Commands
 
-**From project root (`dev-110-setup/`):**
+**From project root (`DEV-110---Introduction-to-Programming-C---W26/`):**
 
 ```bash
 # Mac/Linux:
