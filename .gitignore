@@ -80,6 +80,9 @@ Desktop.ini
 .vscode/launch.json.local
 .vscode/tasks.json.local
 
+# GitHub files
+.github
+
 # Sensitive files (keep student work private)
 **/solution/
 
