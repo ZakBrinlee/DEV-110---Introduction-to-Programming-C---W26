@@ -1,7 +1,7 @@
 # Week 1: Hello, GitHub - Study Notes
 
 **Name:**
-
+Sylas Munns
 ## Development Environment Setup
 
 **Software installed and versions:**
@@ -65,9 +65,9 @@ Answer: to be able to make changes without ruining the main
 **Key takeaways from this week:**
 [What are the 3 most important things you learned?]
 
-1.how to navigate through command line
-2.how to do and turn in assignments
-3.how to use the new applications
+1. how to navigate through command line
+2. how to do and turn in assignments
+3. how to use the new applications
 
 **How this connects to professional development:**
 [Why are these skills important for programmers?]
@@ -76,16 +76,16 @@ Answer:if you dont know how to use programs to program you cant program
 
 ## Time Spent
 
-**Total time:** [... hours]
+**Total time:** 3 hours
 
 **Breakdown:**
 
--   Installing and configuring software: [0 hours]
--   Learning terminal/command line basics: [1 hours]
--   Writing the "Hello, GitHub!" program: [0 hours]
--   Understanding Git workflow: [1 hours]
--   Testing and fixing issues: [0 hours]
--   Writing documentation: [.5 hours]
+-   Installing and configuring software: 0 hours
+-   Learning terminal/command line basics: 1 hours
+-   Writing the "Hello, GitHub!" program: 0 hours
+-   Understanding Git workflow: 1 hours
+-   Testing and fixing issues: 0 hours
+-   Writing documentation: .5 hours
 
 **Most time-consuming part:** [Which aspect took the longest and why?]
 
