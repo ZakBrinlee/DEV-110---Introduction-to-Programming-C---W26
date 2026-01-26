@@ -4,13 +4,20 @@
 
 ### From Project Root (Recommended) ⭐
 
-From the **top-level project directory** (`dev-110-setup/`):
+From the **top-level project directory** (`DEV-110---Introduction-to-Programming-C---W26/`):
 
 ```bash
+# Mac/Linux:
 ./test 1        # Test Week 1
 ./test 2        # Test Week 2
 ./test 3        # Test Week 3
 ./test all      # Test everything
+
+# Windows:
+dotnet test modules\week-01-hello-github\tests
+dotnet test modules\week-02-calculator-lite\tests
+dotnet test modules\week-03-profile-card\tests
+# etc.
 ```
 
 **What you get:**
@@ -38,11 +45,15 @@ From the **top-level project directory** (`dev-110-setup/`):
 From `modules/week-XX-assignment/starter/`:
 
 ```bash
-# Using the test script (beginner-friendly output)
+# Mac/Linux - Using the test script:
 ../../../test 1
 
-# Or using dotnet directly
+# Using dotnet directly (works on all platforms):
+# Mac/Linux:
 dotnet test ../tests
+
+# Windows:
+dotnet test ..\tests
 ```
 
 ### If You're in a Module Folder
@@ -50,10 +61,10 @@ dotnet test ../tests
 From `modules/week-XX-assignment/`:
 
 ```bash
-# Using the test script (beginner-friendly output)
+# Mac/Linux - Using the test script:
 ../../test 1
 
-# Or using dotnet directly
+# Using dotnet directly (works on all platforms):
 dotnet test tests
 ```
 
@@ -64,23 +75,37 @@ dotnet test tests
 Open the integrated terminal in VS Code:
 
 -   Press `` Ctrl+` `` (backtick) or select `View` → `Terminal`
--   **Make sure you're in the project root directory** (`dev-110-setup/`)
+-   **Make sure you're in the project root directory** (`DEV-110---Introduction-to-Programming-C---W26/`)
 -   Run the test commands:
 
 ```bash
+# Mac/Linux:
 ./test 1        # Test Week 1
 ./test 2        # Test Week 2
 ./test all      # Test all weeks
+
+# Windows:
+dotnet test modules\week-01-hello-github\tests
+dotnet test modules\week-02-calculator-lite\tests
+# etc.
 ```
 
 **If your terminal opens in a subdirectory:**
 
 ```bash
 # Navigate to project root first
-cd /Users/your-username/dev-110-setup
+# Mac/Linux:
+cd ~/DEV-110---Introduction-to-Programming-C---W26
+
+# Windows:
+cd C:\Users\YourUsername\DEV-110---Introduction-to-Programming-C---W26
 
 # Then run tests
+# Mac/Linux:
 ./test 1
+
+# Windows:
+dotnet test modules\week-01-hello-github\tests
 ```
 
 ---
@@ -113,42 +138,45 @@ Read the message below it for hints on what to fix:
 
 ## Common Test Commands
 
-**From project root (`dev-110-setup/`):**
+**From project root (`DEV-110---Introduction-to-Programming-C---W26/`):**
 
 ```bash
-# See help and available options
-./test
+# Mac/Linux:
+./test          # See help and available options
+./test 1        # Test your current week's assignment
+./test 2        # Test a different week
+./test all      # Check all your completed work
 
-# Test your current week's assignment
-./test 1
-
-# Test a different week
-./test 2
-
-# Check all your completed work
-./test all
+# Windows:
+dotnet test modules\week-01-hello-github\tests
+dotnet test modules\week-02-calculator-lite\tests
+# etc.
 ```
 
 **From a starter folder (`modules/week-XX-assignment/starter/`):**
 
 ```bash
-# Using test script
+# Mac/Linux - Using test script:
 ../../../test 1
 
-# Using dotnet
+# Using dotnet (works on all platforms):
+# Mac/Linux:
 dotnet test ../tests
 
-# Run your program (without tests)
+# Windows:
+dotnet test ..\tests
+
+# Run your program (without tests) - works on all platforms:
 dotnet run
 ```
 
 **From a module folder (`modules/week-XX-assignment/`):**
 
 ```bash
-# Using test script
+# Mac/Linux - Using test script:
 ../../test 1
 
-# Using dotnet
+# Using dotnet (works on all platforms):
 dotnet test tests
 ```
 
