@@ -81,6 +81,7 @@ public class Program
 
         //These are the if statements that run all 6 operations, if none of the given operations are inputted by user then
         //tells user to sent a valid operation
+        //also handles percentage difference and calculations performed
 
         if (operation == "+" || operation == "addition")
         {
@@ -89,10 +90,18 @@ public class Program
             if (useDecimals == true)
             {
                 Console.WriteLine($"{inputNumber1} {operation} {inputNumber2} = {outputDecimal:F2}!\n");
+                percentageDifference = ((inputNumber1 - inputNumber2) / inputNumber1) * 100;
+                Console.WriteLine($"There is a {percentageDifference}% difference.");
+                calculationCount = +1;
+                Console.WriteLine($"Performed {calculationCount} calculations for {userName}!");
             }
             else
             {
                 Console.WriteLine($"{inputNumber1} {operation} {inputNumber2} = {outputDecimal:F0}!");
+                percentageDifference = ((inputNumber1 - inputNumber2) / inputNumber1) * 100;
+                Console.WriteLine($"There is a {percentageDifference}% difference.");
+                calculationCount = +1;
+                Console.WriteLine($"Performed {calculationCount} calculations for {userName}!");
             }
 
     }
@@ -106,10 +115,18 @@ public class Program
             if (useDecimals == true)
             {
                 Console.WriteLine($"{inputNumber1} {operation} {inputNumber2} = {outputDecimal:F2}");
+                percentageDifference = ((inputNumber1 - inputNumber2) / inputNumber1) * 100;
+                Console.WriteLine($"There is a {percentageDifference}% difference.");
+                calculationCount = +1;
+                Console.WriteLine($"Performed {calculationCount} calculations for {userName}!");
             }
             else
             {
                 Console.WriteLine($"{inputNumber1} {operation} {inputNumber2} = {outputDecimal:F0}");
+                percentageDifference = ((inputNumber1 - inputNumber2) / inputNumber1) * 100;
+                Console.WriteLine($"There is a {percentageDifference}% difference.");
+                calculationCount = +1;
+                Console.WriteLine($"Performed {calculationCount} calculations for {userName}!");
             }
         }
 
@@ -123,20 +140,24 @@ public class Program
             if (useDecimals == true)
             {
                 Console.WriteLine($"{inputNumber1} {operation} {inputNumber2} = {outputDecimal:F2}");
+                percentageDifference = ((inputNumber1 - inputNumber2) / inputNumber1) * 100;
+                Console.WriteLine($"There is a {percentageDifference}% difference.");
+                calculationCount = +1;
+                Console.WriteLine($"Performed {calculationCount} calculations for {userName}!");
             }
             else
             {
                 Console.WriteLine($"{inputNumber1} {operation} {inputNumber2} = {outputDecimal:F0}");
+                percentageDifference = ((inputNumber1 - inputNumber2) / inputNumber1) * 100;
+                Console.WriteLine($"There is a {percentageDifference}% difference.");
+                calculationCount = +1;
+                Console.WriteLine($"Performed {calculationCount} calculations for {userName}!");
             }
         }
 
         else if (operation == "/")
         {
-            if(inputNumber2 == 0 )
-            {
-                Console.WriteLine("Cannot divide by zero");
-            }
-            else
+            if(inputNumber2 != 0 )
             {
             Console.WriteLine($"You have chosen {operation}, calculating");
             Console.WriteLine("...");
@@ -146,27 +167,51 @@ public class Program
                 if (useDecimals == true)
                 {
                     Console.WriteLine($"{inputNumber1} {operation} {inputNumber2} = {outputDecimal:F2}!");
+                    percentageDifference = ((inputNumber1 - inputNumber2) / inputNumber1) * 100;
+                    Console.WriteLine($"There is a {percentageDifference}% difference.");
+                    calculationCount = +1;
+                    Console.WriteLine($"Performed {calculationCount} calculations for {userName}!");
                 }
                 else
                 {
                     Console.WriteLine($"{inputNumber1} {operation} {inputNumber2} = {outputDecimal:F0}!");
+                    percentageDifference = ((inputNumber1 - inputNumber2) / inputNumber1) * 100;
+                    Console.WriteLine($"There is a {percentageDifference}% difference.");
+                    calculationCount = +1;
+                    Console.WriteLine($"Performed {calculationCount} calculations for {userName}!");
                 }
+            }
+            else
+            {
+                Console.WriteLine("Cannot divide by 0");
             }
         }
         else if (operation == "%")
         {
             Console.WriteLine($"You have chosen {operation}, calculating");
-            Console.WriteLine("...");
-            Console.WriteLine("...");
-            Console.WriteLine("...");
-            outputDecimal = inputNumber1 % inputNumber2;
-            if (useDecimals == true)
+            if (inputNumber2 != 0)
             {
-                Console.WriteLine($"{inputNumber1} {operation} {inputNumber2} = {outputDecimal:F2}");
+                outputDecimal = inputNumber1 % inputNumber2;
+                if (useDecimals == true)
+            {
+                    Console.WriteLine($"{inputNumber1} {operation} {inputNumber2} = {outputDecimal:F2}");
+                    percentageDifference = ((inputNumber1 - inputNumber2) / inputNumber1) * 100;
+                    Console.WriteLine($"There is a {percentageDifference}% difference.");
+                    calculationCount = +1;
+                    Console.WriteLine($"Performed {calculationCount} calculations for {userName}!");
+                }
+                else
+            {
+                    Console.WriteLine($"{inputNumber1} {operation} {inputNumber2} = {outputDecimal:F0}!");
+                    percentageDifference = ((inputNumber1 - inputNumber2) / inputNumber1) * 100;
+                    Console.WriteLine($"There is a {percentageDifference}% difference.");
+                    calculationCount = +1;
+                    Console.WriteLine($"Performed {calculationCount} calculations for {userName}!");
+                }
             }
             else
             {
-                Console.WriteLine($"{inputNumber1} {operation} {inputNumber2} = {outputDecimal:F0}!");
+                Console.WriteLine("Cannot divide by 0");
             }
 
         }
@@ -176,17 +221,24 @@ public class Program
             if (useDecimals == true)
             {
             Console.WriteLine($"({inputNumber1} + {inputNumber2}) / 2 = {outputDecimal:F2}\n");
+                percentageDifference = ((inputNumber1 - inputNumber2) / inputNumber1) * 100;
+                Console.WriteLine($"There is a {percentageDifference}% difference.");
+                calculationCount = +1;
+                Console.WriteLine($"Performed {calculationCount} calculations for {userName}!");
             }
             else
             {
                 Console.WriteLine($"{inputNumber1} {operation} {inputNumber2} = {outputDecimal:F0}!\n");
+                percentageDifference = ((inputNumber1 - inputNumber2) / inputNumber1) * 100;
+                Console.WriteLine($"There is a {percentageDifference}% difference.");
+                calculationCount = +1;
+                Console.WriteLine($"Performed {calculationCount} calculations for {userName}!");
             }
         }
         else{Console.WriteLine("Please enter a valid input");}
 
         //increases and displays calculation count
-        calculationCount =+ 1;
-        Console.WriteLine ($"Performed {calculationCount} calculations for {userName}!");
+
 
         // TODO: Display results with proper formatting
         // Show 2 decimal places: {value:F2}
@@ -202,8 +254,6 @@ public class Program
         // Formula: ((num1 - num2) / num1) * 100
         // Display with % symbol
         //calculates percentage difference
-        percentageDifference = ((inputNumber1 - inputNumber2)/inputNumber1) * 100;
-        Console.WriteLine($"There is a {percentageDifference}% difference.");
 
 
         Console.WriteLine("\nThank you for using Calculator Lite!");
