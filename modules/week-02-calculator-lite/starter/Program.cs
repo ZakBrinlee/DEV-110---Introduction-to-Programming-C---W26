@@ -8,6 +8,8 @@ public class Program
 
         // TODO: Declare variables for storing user input (use descriptive names)
         // Hint: You'll need variables for two numbers, user name, and calculation choice
+        //these are most of the variables used in the program, these aren't all of them as I couldn't put them all
+        //up here
 
         double inputNumber1 = 0;
         double inputNumber2 = 0;
@@ -22,6 +24,8 @@ public class Program
         // TODO: Ask for user's name (string) and greet them
         // Example: "Enter your name: " then "Hello, [name]!"
 
+        //exactly what the example tells me to do, asks for name then stores it and uses it now and later
+
         Console.WriteLine("Enter your name");
         string userName = Console.ReadLine();
         Console.WriteLine($"Hello, {userName}!");
@@ -29,6 +33,8 @@ public class Program
         // TODO: Ask if they want to use decimals (bool)
         // Example: "Use decimal precision? (yes/no): "
         // Store as boolean (true for yes, false for no)
+
+        //boolean is set to true based on whether or not the user said "yes" or "y"
 
         Console.WriteLine("Use decimal precision? (yes/no):");
 
@@ -38,6 +44,8 @@ public class Program
         // TODO: Prompt user for first number (double or int based on choice)
         // If decimals: use double.Parse()
         // If no decimals: use int.Parse() then cast to double
+
+        //stores numbers based on whether or not decimal values are used, I'm pretty sure this isn't necessary
 
         Console.WriteLine("Please enter the first number");
         if (useDecimals == true)
@@ -58,6 +66,7 @@ public class Program
             Console.WriteLine("Your choices are +,-,*,/,%,avg");
         }
 
+        //makes new variable named operation to use below
         operation = Console.ReadLine();
 
 
@@ -69,6 +78,9 @@ public class Program
         // - quotient (division: /)
         // - remainder (modulus: %)
         // - average ((num1 + num2) / 2)
+
+        //These are the if statements that run all 6 operations, if none of the given operations are inputted by user then
+        //tells user to sent a valid operation
 
         if (operation == "+" || operation == "addition")
         {
@@ -171,6 +183,8 @@ public class Program
             }
         }
         else{Console.WriteLine("Please enter a valid input");}
+
+        //increases and displays calculation count
         calculationCount =+ 1;
         Console.WriteLine ($"Performed {calculationCount} calculations for {userName}!");
 
@@ -187,6 +201,7 @@ public class Program
         // TODO: Calculate percentage difference
         // Formula: ((num1 - num2) / num1) * 100
         // Display with % symbol
+        //calculates percentage difference
         percentageDifference = ((inputNumber1 - inputNumber2)/inputNumber1) * 100;
         Console.WriteLine($"There is a {percentageDifference}% difference.");
 
