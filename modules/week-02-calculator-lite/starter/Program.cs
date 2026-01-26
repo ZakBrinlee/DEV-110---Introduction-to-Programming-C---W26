@@ -8,9 +8,8 @@ public class Program
 
         // TODO: Declare variables for storing user input (use descriptive names)
         // Hint: You'll need variables for two numbers, user name, and calculation choice
-        //these are most of the variables used in the program, these aren't all of them as I couldn't put them all
-        //up here
-
+        // these are most of the variables used in the program, these aren't all of them as I couldn't put them all
+        // up here
         double inputNumber1 = 0;
         double inputNumber2 = 0;
         double outputDecimal = 0;
@@ -18,14 +17,10 @@ public class Program
         int calculationCount = 1;
         double percentageDifference = 0;
 
-
-
-
         // TODO: Ask for user's name (string) and greet them
         // Example: "Enter your name: " then "Hello, [name]!"
 
-        //exactly what the example tells me to do, asks for name then stores it and uses it now and later
-
+        // exactly what the example tells me to do, asks for name then stores it and uses it now and later
         Console.WriteLine("Enter your name");
         string userName = Console.ReadLine();
         Console.WriteLine($"Hello, {userName}!");
@@ -34,8 +29,7 @@ public class Program
         // Example: "Use decimal precision? (yes/no): "
         // Store as boolean (true for yes, false for no)
 
-        //boolean is set to true based on whether or not the user said "yes" or "y"
-
+        // boolean is set to true based on whether or not the user said "yes" or "y"
         Console.WriteLine("Use decimal precision? (yes/no):");
 
         string detailChoice = Console.ReadLine().ToLower();
@@ -45,8 +39,7 @@ public class Program
         // If decimals: use double.Parse()
         // If no decimals: use int.Parse() then cast to double
 
-        //stores numbers based on whether or not decimal values are used, I'm pretty sure this isn't necessary
-
+        // stores numbers based on whether or not decimal values are used, I'm pretty sure this isn't necessary
         Console.WriteLine("Please enter the first number");
         if (useDecimals == true)
         {
@@ -55,7 +48,6 @@ public class Program
             inputNumber2 = double.Parse(Console.ReadLine());
             Console.WriteLine($"stored {inputNumber2}, please enter operation");
             Console.WriteLine("Your choices are +,-,*,/,%,avg");
-
         }
         else
         {
@@ -66,10 +58,8 @@ public class Program
             Console.WriteLine("Your choices are +,-,*,/,%,avg");
         }
 
-        //makes new variable named operation to use below
+        // makes new variable named operation to use below
         operation = Console.ReadLine();
-
-
 
         // TODO: Calculate ALL arithmetic operations:
         // - sum (addition: +)
@@ -79,13 +69,11 @@ public class Program
         // - remainder (modulus: %)
         // - average ((num1 + num2) / 2)
 
-        //These are the if statements that run all 6 operations, if none of the given operations are inputted by user then
-        //tells user to sent a valid operation
-        //also handles percentage difference and calculations performed
-
+        // These are the if statements that run all 6 operations, if none of the given operations are inputted by user then
+        // tells user to sent a valid operation
+        // also handles percentage difference and calculations performed
         if (operation == "+" || operation == "addition")
         {
-
             outputDecimal = inputNumber1 + inputNumber2;
             if (useDecimals == true)
             {
@@ -103,8 +91,7 @@ public class Program
                 calculationCount = +1;
                 Console.WriteLine($"Performed {calculationCount} calculations for {userName}!");
             }
-
-    }
+        }
         else if (operation == "-")
         {
             Console.WriteLine($"You have chosen {operation}, calculating");
@@ -129,7 +116,6 @@ public class Program
                 Console.WriteLine($"Performed {calculationCount} calculations for {userName}!");
             }
         }
-
         else if (operation == "*")
         {
             Console.WriteLine($"You have chosen {operation}, calculating");
@@ -154,16 +140,15 @@ public class Program
                 Console.WriteLine($"Performed {calculationCount} calculations for {userName}!");
             }
         }
-
         else if (operation == "/")
         {
-            if(inputNumber2 != 0 )
+            if (inputNumber2 != 0)
             {
-            Console.WriteLine($"You have chosen {operation}, calculating");
-            Console.WriteLine("...");
-            Console.WriteLine("...");
-            Console.WriteLine("...");
-            outputDecimal = inputNumber1 / inputNumber2;
+                Console.WriteLine($"You have chosen {operation}, calculating");
+                Console.WriteLine("...");
+                Console.WriteLine("...");
+                Console.WriteLine("...");
+                outputDecimal = inputNumber1 / inputNumber2;
                 if (useDecimals == true)
                 {
                     Console.WriteLine($"{inputNumber1} {operation} {inputNumber2} = {outputDecimal:F2}!");
@@ -193,7 +178,7 @@ public class Program
             {
                 outputDecimal = inputNumber1 % inputNumber2;
                 if (useDecimals == true)
-            {
+                {
                     Console.WriteLine($"{inputNumber1} {operation} {inputNumber2} = {outputDecimal:F2}");
                     percentageDifference = ((inputNumber1 - inputNumber2) / inputNumber1) * 100;
                     Console.WriteLine($"There is a {percentageDifference}% difference.");
@@ -201,7 +186,7 @@ public class Program
                     Console.WriteLine($"Performed {calculationCount} calculations for {userName}!");
                 }
                 else
-            {
+                {
                     Console.WriteLine($"{inputNumber1} {operation} {inputNumber2} = {outputDecimal:F0}!");
                     percentageDifference = ((inputNumber1 - inputNumber2) / inputNumber1) * 100;
                     Console.WriteLine($"There is a {percentageDifference}% difference.");
@@ -213,14 +198,13 @@ public class Program
             {
                 Console.WriteLine("Cannot divide by 0");
             }
-
         }
         else if (operation == "avg")
         {
-            outputDecimal = (inputNumber1 + inputNumber2)/2;
+            outputDecimal = (inputNumber1 + inputNumber2) / 2;
             if (useDecimals == true)
             {
-            Console.WriteLine($"({inputNumber1} + {inputNumber2}) / 2 = {outputDecimal:F2}\n");
+                Console.WriteLine($"({inputNumber1} + {inputNumber2}) / 2 = {outputDecimal:F2}\n");
                 percentageDifference = ((inputNumber1 - inputNumber2) / inputNumber1) * 100;
                 Console.WriteLine($"There is a {percentageDifference}% difference.");
                 calculationCount = +1;
@@ -235,10 +219,12 @@ public class Program
                 Console.WriteLine($"Performed {calculationCount} calculations for {userName}!");
             }
         }
-        else{Console.WriteLine("Please enter a valid input");}
+        else
+        {
+            Console.WriteLine("Please enter a valid input");
+        }
 
-        //increases and displays calculation count
-
+        // increases and displays calculation count
 
         // TODO: Display results with proper formatting
         // Show 2 decimal places: {value:F2}
@@ -253,9 +239,7 @@ public class Program
         // TODO: Calculate percentage difference
         // Formula: ((num1 - num2) / num1) * 100
         // Display with % symbol
-        //calculates percentage difference
-
-
+        // calculates percentage difference
         Console.WriteLine("\nThank you for using Calculator Lite!");
     }
 }
