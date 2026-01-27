@@ -60,8 +60,8 @@ git --version
 ### Step 3: Clone Your Fork
 
 ```bash
-git clone https://github.com/<your-username>/dev-110-setup.git
-cd dev-110-setup
+git clone https://github.com/<your-username>/DEV-110---Introduction-to-Programming-C---W26.git
+cd DEV-110---Introduction-to-Programming-C---W26
 ```
 
 Replace `<your-username>` with your GitHub username.
@@ -74,13 +74,18 @@ git config --global user.name "Your Name"
 git config --global user.email "your-email@example.com"
 
 # Add upstream remote to get future updates
-git remote add upstream <instructor-repo-url>
+git remote add upstream <your-respository-url>
 ```
 
 ### Step 5: Test Your Setup
 
 ```bash
+# Mac/Linux:
 cd modules/week-01-hello-github/starter
+
+# Windows:
+cd modules\week-01-hello-github\starter
+
 dotnet runmain and up to date
 git checkout main
 git pull origin main
@@ -98,7 +103,11 @@ git checkout -b assignment/week-01
 
 ```bash
 # Navigate to the module
+# Mac/Linux:
 cd modules/week-01-hello-github/starter
+
+# Windows:
+cd modules\week-01-hello-github\starter
 
 # Open in VS Code
 code .
@@ -111,14 +120,17 @@ dotnet run
 
 **Option 1: From project root (Recommended)**
 
-From the top-level `dev-110-setup/` directory:
+From the top-level `DEV-110---Introduction-to-Programming-C---W26/` directory:
 
 ```bash
-# Test a specific week
+# Mac/Linux:
 ./test 1           # or ./test week-1 or ./test week-01
+./test all         # Test all weeks
 
-# Test all weeks
-./test all
+# Windows (use dotnet test directly):
+dotnet test modules\week-01-hello-github\tests
+dotnet test modules\week-02-calculator-lite\tests
+# etc.
 ```
 
 **Option 2: From within a module's starter folder**
@@ -126,11 +138,15 @@ From the top-level `dev-110-setup/` directory:
 From `modules/week-XX-assignment/starter/`:
 
 ```bash
-# Using the test script (beginner-friendly output)
+# Mac/Linux - Using the test script:
 ../../../test 1
 
-# Or using dotnet directly
+# Using dotnet directly (works on all platforms):
+# Mac/Linux:
 dotnet test ../tests
+
+# Windows:
+dotnet test ..\tests
 ```
 
 **Option 3: From within a module folder**
@@ -138,10 +154,10 @@ dotnet test ../tests
 From `modules/week-XX-assignment/`:
 
 ```bash
-# Using the test script (beginner-friendly output)
+# Mac/Linux - Using the test script:
 ../../test 1
 
-# Or using dotnet directly
+# Using dotnet directly (works on all platforms):
 dotnet test tests
 ```
 
@@ -151,12 +167,22 @@ Open terminal with `` Ctrl+` `` (or `View` → `Terminal`), then navigate to pro
 
 ```bash
 # Navigate to project root if not already there
-cd ~/dev-110-setup   # or your project path
+# Mac/Linux:
+cd ~/DEV-110---Introduction-to-Programming-C---W26
+
+# Windows:
+cd C:\Users\YourUsername\DEV-110---Introduction-to-Programming-C---W26
 
 # Then run tests
+# Mac/Linux:
 ./test 1           # Test Week 1
 ./test 2           # Test Week 2
 ./test all         # Test all weeks
+
+# Windows:
+dotnet test modules\week-01-hello-github\tests
+dotnet test modules\week-02-calculator-lite\tests
+# etc.
 ```
 
 ### Submitting Your Work
@@ -206,18 +232,25 @@ git push origin student/<your-name>
 
 ### "Unable to find project"
 
-assignment/week-XX
+-   Make sure you're in the correct directory
+-   Use `pwd` (Mac/Linux) or `cd` (Windows) to check current directory
+-   Navigate to the correct folder before running tests
+
+### "Git Push Rejected (Branch Issues)"
+
+```bash
+# Make sure you're on the correct branch
+git checkout assignment/week-XX
 
 # Or if you need to sync with main first:
-
 git checkout main
 git pull origin main
 git checkout assignment/week-XX
 git merge main
 
 # Then push again
-
-git push origin assignment/week-XXWindows) to check current directory
+git push origin assignment/week-XX
+```
 
 ### Tests Won't Run
 
