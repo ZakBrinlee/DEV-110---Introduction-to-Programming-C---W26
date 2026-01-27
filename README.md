@@ -38,18 +38,27 @@ This course is organized into 12 weekly modules, each building on the previous w
 
     ```bash
     # Fork on GitHub, then clone your fork
-    git clone https://github.com/<your-username>/dev-110-setup.git
-    cd dev-110-setup
+    git clone https://github.com/<your-username>/DEV-110---Introduction-to-Programming-C---W26.git
+    cd DEV-110---Introduction-to-Programming-C---W26
     ```
 
 3. **Test Your Setup**
 
     ```bash
     # Quick test
+    # Mac/Linux:
     ./test 1
 
+    # Windows:
+    dotnet test modules\week-01-hello-github\tests
+
     # Or navigate to a module
+    # Mac/Linux:
     cd modules/week-01-hello-github/starter
+
+    # Windows:
+    cd modules\week-01-hello-github\starter
+
     dotnet run
     ```
 
@@ -62,7 +71,9 @@ This course is organized into 12 weekly modules, each building on the previous w
 1. Navigate to the week's module folder
 2. Read the `README.md` for instructions
 3. Work in the `starter/` folder
-4. Run tests often: `dotnet test ../tests`
+4. Run tests often:
+    - Mac/Linux: `dotnet test ../tests`
+    - Windows: `dotnet test ..\tests`
 
 ### Submitting Your Work
 
@@ -84,13 +95,24 @@ Each assignment includes automated tests that run:
 
 ```bash
 # Test any week (from project root)
+# Mac/Linux:
 ./test 1        # Test Week 1
 ./test 2        # Test Week 2
 ./test all      # Test all weeks
 
+# Windows:
+dotnet test modules\week-01-hello-github\tests
+dotnet test modules\week-02-calculator-lite\tests
+# etc.
+
 # Or from within a module
+# Mac/Linux:
 cd modules/week-01-hello-github/starter
 bash ../../run-tests.sh ../tests
+
+# Windows:
+cd modules\week-01-hello-github\starter
+dotnet test ..\tests
 ```
 
 **Features:**
@@ -130,7 +152,7 @@ See [Style Guide](docs/STYLE_GUIDE.md) for detailed style rules.
 ## 📁 Repository Structure
 
 ```
-dev-110-setup/
+DEV-110---Introduction-to-Programming-C---W26/
 ├── .github/workflows/     # Automated grading & CI/CD
 ├── .vscode/              # VS Code settings
 ├── docs/                 # Course documentation

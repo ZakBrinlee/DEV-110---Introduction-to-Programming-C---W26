@@ -10,12 +10,18 @@ Unit tests are small programs that automatically check if your code works correc
 
 ### From Project Root (Recommended) ⭐
 
-From the **top-level project directory** (`dev-110-setup/`):
+From the **top-level project directory** (`DEV-110---Introduction-to-Programming-C---W26/`):
 
 ```bash
+# Mac/Linux:
 ./test 1        # Test Week 1
 ./test 2        # Test Week 2
 ./test all      # Test all weeks
+
+# Windows:
+dotnet test modules\week-01-hello-github\tests
+dotnet test modules\week-02-calculator-lite\tests
+# etc.
 ```
 
 ### From Within a Module
@@ -23,20 +29,24 @@ From the **top-level project directory** (`dev-110-setup/`):
 **If you're in a starter folder** (`modules/week-XX-assignment/starter/`):
 
 ```bash
-# Using the test script (beginner-friendly output)
+# Mac/Linux - Using the test script:
 ../../../test 1
 
-# Using dotnet directly
+# Using dotnet directly (works on all platforms):
+# Mac/Linux:
 dotnet test ../tests
+
+# Windows:
+dotnet test ..\tests
 ```
 
 **If you're in a module folder** (`modules/week-XX-assignment/`):
 
 ```bash
-# Using the test script (beginner-friendly output)
+# Mac/Linux - Using the test script:
 ../../test 1
 
-# Using dotnet directly
+# Using dotnet directly (works on all platforms):
 dotnet test tests
 ```
 
@@ -115,16 +125,27 @@ dotnet test
 **Fix from starter folder:**
 
 ```bash
+# Mac/Linux:
 cd modules/week-01-hello-github/starter
 dotnet restore
 dotnet build
 dotnet test ../tests
+
+# Windows:
+cd modules\week-01-hello-github\starter
+dotnet restore
+dotnet build
+dotnet test ..\tests
 ```
 
 **Or use the quick command from anywhere:**
 
 ```bash
+# Mac/Linux:
 ./test 1
+
+# Windows:
+dotnet test modules\week-01-hello-github\tests
 ```
 
 ### Tests Pass Locally But Fail on GitHub
@@ -338,7 +359,11 @@ dotnet run
 Make your fix, then run tests again:
 
 ```bash
+# Mac/Linux:
 dotnet test ../tests
+
+# Windows:
+dotnet test ..\tests
 ```
 
 ---

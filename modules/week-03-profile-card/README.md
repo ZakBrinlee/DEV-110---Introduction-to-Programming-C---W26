@@ -107,7 +107,11 @@ Profile complete! Good luck with your studies!
 1. Navigate to the starter folder:
 
     ```bash
+    # Mac/Linux:
     cd modules/week-03-profile-card/starter
+
+    # Windows:
+    cd modules\week-03-profile-card\starter
     ```
 
 2. Review the TODO comments in `Program.cs`
@@ -119,8 +123,13 @@ Profile complete! Good luck with your studies!
     ```
 
 4. Test your work:
+
     ```bash
+    # Mac/Linux:
     dotnet test ../tests
+
+    # Windows:
+    dotnet test ..\tests
     ```
 
 ---
