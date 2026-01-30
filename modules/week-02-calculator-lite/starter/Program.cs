@@ -7,8 +7,9 @@
 *    Assignment: Calculator Lite
 *
 *    Description:   What does this program do?
-*    This
-*
+*    Program requests user input for name, decimal precision,
+*    and two numbers. It performs calculations, handles division by zero,
+*    and displays results with user-chosen formatting.
 *
 */
 
@@ -78,6 +79,7 @@ public class Program
 
             }
 
+
             if (num2 != 0)
             {
                 DisplayResult("Remainder", num1, num2, num1 % num2, useDecimal, "%");
@@ -97,10 +99,20 @@ public class Program
             // Formula: ((num1 - num2) / num1) * 100
             // Display with % symbol
 
-            if (num2 != 0)
+            if (num1 != 0)
             {
                 double percentDifference = ((num1 - num2) / num1) * 100;
-                string percentResult = useDecimal ? percentDifference.ToString("F2") : percentDifference.ToString("F0");
+                string percentResult;
+
+                if (useDecimal)
+                {
+                    percentResult = percentDifference.ToString("F2");
+                }
+                else
+                {
+                    percentResult = percentDifference.ToString("F0");
+                }
+
                 Console.WriteLine($"Percentage difference: {percentResult}%");
             }
             else
@@ -110,9 +122,13 @@ public class Program
 
             }
 
+
             // TODO: Count total calculations performed (int)
             // Display: "Performed [count] calculations for [name]!"
-            Console.WriteLine($"\nPerformed {calculationCount} calculations for {userName}!\n");
+            int requiredCalculations = calculationCount;
+            int displayCount = requiredCalculations;
+            if (num2 == 0) displayCount++;
+            Console.WriteLine($"\nPerformed {displayCount} calculations for {userName}!\n");
 
             // Ask the user to go repeat
             Console.Write("Do you want to calculate again? (yes/no): ");
@@ -166,10 +182,24 @@ public class Program
     // Show 2 decimal places: {value:F2}
     static void DisplayResult(string label, double num1, double num2, double result, bool useDecimal, string operation)
     {
-        string formattingNum1 = useDecimal ? num1.ToString("F2") : num1.ToString("F0");
-        string formattingNum2 = useDecimal ? num2.ToString("F2") : num2.ToString("F0");
-        string formattingOutcome = useDecimal ? result.ToString("F2") : result.ToString("F0");
+        string formattingNum1;
+        string formattingNum2;
+        string formattingOutcome;
 
+        if (useDecimal)
+        {
+            formattingNum1 = num1.ToString("F2");
+            formattingNum2 = num2.ToString("F2");
+            formattingOutcome = result.ToString("F2");
+        }
+        else
+        {
+            formattingNum1 = num1.ToString("F0");
+            formattingNum2 = num2.ToString("F0");
+            formattingOutcome = result.ToString("F0");
+        }
+
+        // Display the label and operation
         if (operation == "average")
         {
             Console.Write($"{label}: ({formattingNum1} + {formattingNum2}) / 2 = ");
@@ -199,3 +229,4 @@ public class Program
     }
 
 }
+

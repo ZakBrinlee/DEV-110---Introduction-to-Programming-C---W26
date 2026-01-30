@@ -74,7 +74,7 @@ Enter the first number: 50
 Enter the second number: 25
 
 Results:
-Sum: 50.00 + 25.00 = 75.00
+Sum: 50.0 + 25.00 = 75.00
 Difference: 50.00 - 25.00 = 25.00
 Product: 50.00 * 25.00 = 1250.00
 Quotient: 50.00 / 25.00 = 2.00
