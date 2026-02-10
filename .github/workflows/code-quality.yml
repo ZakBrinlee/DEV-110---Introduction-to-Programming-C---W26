@@ -43,6 +43,7 @@ jobs:
             02) ASSIGNMENT="week-02-calculator-lite" ;;
             03) ASSIGNMENT="week-03-profile-card" ;;
             05) ASSIGNMENT="week-05-guess-the-number";;
+            06) ASSIGNMENT="week-06-text-menu-app";;
             *)
               echo "::warning::Week $WEEK not configured - skipping code quality check"
               echo "week=none" >> $GITHUB_OUTPUT
