@@ -38,13 +38,14 @@ public class Program
         // Hint: Use a while loop
         while (choice != 6)
         {
-            Console.WriteLine("\n=== MAIN MENU ===");
+            Console.WriteLine(divider);
             Console.WriteLine("1) Greeting Card");
             Console.WriteLine("2) Name Tag Formatter");
             Console.WriteLine("3) Phrase Analyzer");
             Console.WriteLine("4) Fancy Receipt Line");
             Console.WriteLine("5) Menu Banner Builder");
             Console.WriteLine("6) Exit");
+            Console.WriteLine(divider);
 
             // TODO 3: Print the menu box
             // Required menu option texts (tests check for these):
@@ -237,13 +238,12 @@ public class Program
 
         int boxInnerWidth = Math.Max(Math.Max(nameLine.Length, upperLine.Length), messageLine.Length);
         int boxWidth = boxInnerWidth + 4; // padding and side markers
-        string border = new string('*', boxWidth);
 
-        Console.WriteLine(border);
-        Console.WriteLine($"* {nameLine.PadRight(boxInnerWidth)} *");
-        Console.WriteLine($"* {upperLine.PadRight(boxInnerWidth)} *");
-        Console.WriteLine($"* {string.Format("{0}", messageLine).PadRight(boxInnerWidth)} *");
-        Console.WriteLine(border);
+        Console.WriteLine(divider);
+        Console.WriteLine($"{nameLine.PadRight(boxInnerWidth)}");
+        Console.WriteLine($"{upperLine.PadRight(boxInnerWidth)}");
+        Console.WriteLine($"{string.Format("{0}", messageLine).PadRight(boxInnerWidth)}");
+        Console.WriteLine(divider);
     }
 
     private static void NameTagFormatter()
@@ -303,7 +303,6 @@ public class Program
 
     private static void MenuBannerBuilder()
     {
-        string divider = new string('=', 48);
         Console.Write("Enter a title: ");
         string title = Console.ReadLine() ?? string.Empty;
         Console.Write("Enter a subtitle: ");
