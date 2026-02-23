@@ -30,6 +30,7 @@ EXIT_CODE=$?
 
 # Display the output with better formatting
 PREV_LINE_TYPE=""
+SHOW_ERROR_DETAILS=false
 echo "$TEST_OUTPUT" | while IFS= read -r line; do
     if [[ $line =~ "Passed Test" ]]; then
         # Add spacing before test result
@@ -42,6 +43,7 @@ echo "$TEST_OUTPUT" | while IFS= read -r line; do
         TEST_DESC=$(echo "$TEST_NAME" | sed 's/Test[0-9]*_//' | sed 's/\([A-Z]\)/ \1/g' | sed 's/^[[:space:]]*//')
         echo -e "${GREEN}✅ TEST $TEST_NUM: $TEST_DESC${NC}"
         PREV_LINE_TYPE="test"
+        SHOW_ERROR_DETAILS=false
     elif [[ $line =~ "Failed Test" ]]; then
         # Add spacing before test result
         if [[ -n "$PREV_LINE_TYPE" ]]; then
@@ -52,9 +54,15 @@ echo "$TEST_OUTPUT" | while IFS= read -r line; do
         TEST_DESC=$(echo "$TEST_NAME" | sed 's/Test[0-9]*_//' | sed 's/\([A-Z]\)/ \1/g' | sed 's/^[[:space:]]*//')
         echo -e "${RED}❌ TEST $TEST_NUM: $TEST_DESC${NC}"
         PREV_LINE_TYPE="test"
+        SHOW_ERROR_DETAILS=false
     elif [[ $line =~ "Error Message:" ]]; then
         echo -e "   ${YELLOW}$line${NC}"
         PREV_LINE_TYPE="error"
+        SHOW_ERROR_DETAILS=true
+    elif [[ $line =~ "Stack Trace:" ]]; then
+        # Stop showing error details when we hit stack trace
+        SHOW_ERROR_DETAILS=false
+        PREV_LINE_TYPE="stack"
     elif [[ $line =~ "💡" ]] || [[ $line =~ "Tip:" ]]; then
         echo -e "   ${BLUE}$line${NC}"
         PREV_LINE_TYPE="tip"
@@ -63,7 +71,16 @@ echo "$TEST_OUTPUT" | while IFS= read -r line; do
         echo "======================================"
         echo -e "${YELLOW}$line${NC}"
         PREV_LINE_TYPE="summary"
-    elif [[ ! $line =~ "Stack Trace:" ]] && [[ ! $line =~ "at System\." ]] && [[ ! $line =~ "at HelloGitHub" ]] && [[ ! $line =~ "at CalculatorLite" ]] && [[ ! $line =~ "at ProfileCard" ]] && [[ ! $line =~ "Build started" ]] && [[ ! $line =~ "Project \"" ]]; then
+        SHOW_ERROR_DETAILS=false
+    elif [[ $SHOW_ERROR_DETAILS == true ]]; then
+        # Show error message content (anything after "Error Message:")
+        if [[ ! $line =~ "at System\." ]] && [[ ! $line =~ "at Microsoft\." ]] && [[ ! $line =~ "at HelloGitHub" ]] && [[ ! $line =~ "at CalculatorLite" ]] && [[ ! $line =~ "at ProfileCard" ]] && [[ ! $line =~ "at GuessTheNumber" ]] && [[ ! $line =~ "at TextMenuApp" ]] && [[ ! $line =~ "at ClassRoster" ]] && [[ ! $line =~ "at MadLibs" ]] && [[ ! $line =~ "at ScoreStats" ]]; then
+            # Show the error message content
+            if [[ -n "$line" ]]; then
+                echo "   $line"
+            fi
+        fi
+    elif [[ ! $line =~ "Stack Trace:" ]] && [[ ! $line =~ "at System\." ]] && [[ ! $line =~ "at Microsoft\." ]] && [[ ! $line =~ "at HelloGitHub" ]] && [[ ! $line =~ "at CalculatorLite" ]] && [[ ! $line =~ "at ProfileCard" ]] && [[ ! $line =~ "at GuessTheNumber" ]] && [[ ! $line =~ "at TextMenuApp" ]] && [[ ! $line =~ "at ClassRoster" ]] && [[ ! $line =~ "at MadLibs" ]] && [[ ! $line =~ "at ScoreStats" ]] && [[ ! $line =~ "Build started" ]] && [[ ! $line =~ "Project \"" ]] && [[ ! $line =~ "Restore complete" ]]; then
         # Only show relevant error lines, skip stack traces and build noise
         if [[ $line =~ "Assert\." ]] || [[ $line =~ "Expected" ]] || [[ $line =~ "Actual" ]] || [[ $line =~ "❌" ]] || [[ $line =~ "✏️" ]]; then
             echo "   $line"
