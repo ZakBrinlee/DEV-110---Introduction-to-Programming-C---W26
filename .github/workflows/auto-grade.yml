@@ -47,9 +47,10 @@ jobs:
             06) ASSIGNMENT="week-06-text-menu-app" ;;
             07) ASSIGNMENT="week-07-class-roster" ;;
             08) ASSIGNMENT="week-08-mad-libs" ;;
+            09) ASSIGNMENT="week-09-methods-linq" ;;
             *)
               echo "::error::Week $WEEK not yet configured in workflow"
-              echo "::error::Available weeks: 01, 02, 03, 05, 06, 07, 08"
+              echo "::error::Available weeks: 01, 02, 03, 05, 06, 07, 08, 09"
               exit 1
               ;;
           esac
@@ -113,15 +114,18 @@ jobs:
         run: |
           cd modules/${{ needs.detect-assignment.outputs.assignment }}
 
-          # Run tests and capture output
-          dotnet test tests --no-build --verbosity normal --logger "console;verbosity=detailed" > test-output.txt 2>&1 || true
+          # Make test script executable
+          chmod +x ../../run-tests.sh
+
+          # Run tests using the clean test runner script
+          ../../run-tests.sh tests --no-build > test-output.txt 2>&1 || true
 
           # Display output in workflow logs
           echo "📊 Test Output:"
           cat test-output.txt
 
           # Check if tests passed
-          if grep -q "Test Run Successful" test-output.txt; then
+          if grep -q "All Tests Passed" test-output.txt; then
             echo "status=passed" >> $GITHUB_OUTPUT
             echo "✅ All tests passed!"
           else
@@ -134,27 +138,12 @@ jobs:
         run: |
           cd modules/${{ needs.detect-assignment.outputs.assignment }}
 
-          # Extract test summary
-          PASSED=$(grep -oP "Passed: \K\d+" test-output.txt | head -1 || echo "0")
-          FAILED=$(grep -oP "Failed: \K\d+" test-output.txt | head -1 || echo "0")
-          SKIPPED=$(grep -oP "Skipped: \K\d+" test-output.txt | head -1 || echo "0")
-          TOTAL=$(grep -oP "Total: \K\d+" test-output.txt | head -1 || echo "0")
-
-          echo "passed=$PASSED" >> $GITHUB_OUTPUT
-          echo "failed=$FAILED" >> $GITHUB_OUTPUT
-          echo "skipped=$SKIPPED" >> $GITHUB_OUTPUT
-          echo "total=$TOTAL" >> $GITHUB_OUTPUT
-
-          # Calculate grade (assuming 100 points max)
-          if [ $TOTAL -gt 0 ]; then
-            GRADE=$((PASSED * 100 / TOTAL))
+          # Just check if tests passed overall
+          if grep -q "All Tests Passed" test-output.txt; then
+            echo "status=passed" >> $GITHUB_OUTPUT
           else
-            GRADE=0
+            echo "status=failed" >> $GITHUB_OUTPUT
           fi
-          echo "grade=$GRADE" >> $GITHUB_OUTPUT
-
-          echo "📊 Results: $PASSED passed, $FAILED failed, $SKIPPED skipped out of $TOTAL total"
-          echo "🎯 Grade: $GRADE/100"
 
       - name: Comment PR with results
         uses: actions/github-script@v7
@@ -168,69 +157,78 @@ jobs:
 
             try {
               testOutput = fs.readFileSync(testOutputPath, 'utf8');
+              // Strip ANSI color codes for clean display in GitHub comments
+              testOutput = testOutput.replace(/\x1b\[[0-9;]*m/g, '');
             } catch (error) {
               testOutput = 'Could not read test output';
             }
 
-            const passed = parseInt('${{ steps.results.outputs.passed }}') || 0;
-            const failed = parseInt('${{ steps.results.outputs.failed }}') || 0;
-            const skipped = parseInt('${{ steps.results.outputs.skipped }}') || 0;
-            const total = parseInt('${{ steps.results.outputs.total }}') || 0;
-            const grade = parseInt('${{ steps.results.outputs.grade }}') || 0;
             const status = '${{ steps.test.outputs.status }}';
 
-            // Extract failed test details
+            // Extract failed test details from clean output format
+            // Format: "❌ TEST XX: Description"
             const failedTests = [];
+            const passedTests = [];
             const lines = testOutput.split('\n');
             for (let i = 0; i < lines.length; i++) {
-              if (lines[i].includes('Failed') && (lines[i].includes('Test') || lines[i].includes('TEST'))) {
-                const testName = lines[i].trim();
-                if (!testName.startsWith('Failed:') && testName.length > 0) {
-                  failedTests.push(testName);
-                }
+              if (lines[i].includes('❌ TEST')) {
+                const testLine = lines[i].trim();
+                const cleanLine = testLine.replace(/\x1b\[[0-9;]*m/g, '');
+                failedTests.push(cleanLine);
+              } else if (lines[i].includes('✅ TEST')) {
+                const testLine = lines[i].trim();
+                const cleanLine = testLine.replace(/\x1b\[[0-9;]*m/g, '');
+                passedTests.push(cleanLine);
               }
             }
 
             const emoji = status === 'passed' ? '✅' : '❌';
-            const gradeEmoji = grade >= 90 ? '🌟' : grade >= 80 ? '🎉' : grade >= 70 ? '👍' : grade >= 60 ? '📚' : '💪';
 
             let comment = `## ${emoji} Test Results - Week ${{ needs.detect-assignment.outputs.week }}\n\n`;
             comment += `**Assignment:** \`${{ needs.detect-assignment.outputs.assignment }}\`\n\n`;
-            comment += `### ${gradeEmoji} Score: ${grade}/100\n\n`;
-            comment += `| Status | Count |\n`;
-            comment += `|--------|-------|\n`;
-            comment += `| ✅ Passed | ${passed}/${total} |\n`;
-            comment += `| ❌ Failed | ${failed}/${total} |\n`;
-            if (skipped > 0) {
-              comment += `| ⏭️ Skipped | ${skipped}/${total} |\n`;
-            }
-            comment += `\n`;
 
             if (status === 'passed') {
               comment += `### 🎉 Excellent work! All tests passed!\n\n`;
               comment += `Your assignment meets all requirements and is ready for review.\n\n`;
+
+              // Show all passing tests
+              if (passedTests.length > 0) {
+                comment += `### ✅ Tests that pass:\n\n`;
+                passedTests.forEach(test => {
+                  comment += `- ${test}\n`;
+                });
+                comment += `\n`;
+              }
+
               comment += `#### Next Steps:\n`;
               comment += `- Wait for instructor feedback\n`;
               comment += `- Once approved, your PR will be merged\n`;
             } else {
+              // Show failed tests first
               comment += `### 📝 Tests that need attention:\n\n`;
               if (failedTests.length > 0) {
-                const uniqueTests = [...new Set(failedTests)].slice(0, 10);
+                const uniqueTests = [...new Set(failedTests)];
                 uniqueTests.forEach(test => {
                   comment += `- ${test}\n`;
                 });
-                if (failedTests.length > 10) {
-                  comment += `\n_...and ${failedTests.length - 10} more. See detailed output below._\n`;
-                }
               } else {
                 comment += `See detailed test output below for more information.\n`;
               }
+
+              // Show passed tests next
+              if (passedTests.length > 0) {
+                comment += `\n### ✅ Tests that pass:\n\n`;
+                passedTests.forEach(test => {
+                  comment += `- ${test}\n`;
+                });
+              }
+
               comment += `\n### 💡 Next Steps:\n\n`;
               comment += `1. Review the failed tests above\n`;
               comment += `2. Run tests locally to debug:\n`;
-              comment += `  From the assignment's starter directory\n`;
               comment += `   \`\`\`bash\n`;
-              comment += `   dotnet test ../tests ${{ needs.detect-assignment.outputs.week }}\n`;
+              comment += `   # From the repository root:\n`;
+              comment += `   ./test ${{ needs.detect-assignment.outputs.week }}\n`;
               comment += `   \`\`\`\n`;
               comment += `3. Make necessary corrections to your code\n`;
               comment += `4. Commit and push your changes\n`;
@@ -238,10 +236,15 @@ jobs:
             }
 
             comment += `\n---\n\n`;
-            comment += `<details>\n<summary>📊 View detailed test output</summary>\n\n`;
-            comment += `\`\`\`\n${testOutput.substring(0, 60000)}\n\`\`\`\n\n`;
-            comment += `</details>\n\n`;
-            comment += `---\n`;
+
+            // Only show detailed output if there are failures
+            if (status !== 'passed') {
+              comment += `<details>\n<summary>📋 Full Test Output (click to expand)</summary>\n\n`;
+              comment += `\`\`\`\n${testOutput.substring(0, 50000)}\n\`\`\`\n\n`;
+              comment += `</details>\n\n`;
+              comment += `---\n`;
+            }
+
             const now = new Date();
             const pstString = now.toLocaleString('en-US', {
               timeZone: 'America/Los_Angeles',

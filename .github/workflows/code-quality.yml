@@ -46,6 +46,7 @@ jobs:
             06) ASSIGNMENT="week-06-text-menu-app";;
             07) ASSIGNMENT="week-07-class-roster";;
             08) ASSIGNMENT="week-08-mad-libs";;
+            09) ASSIGNMENT="week-09-methods-linq";;
             *)
               echo "::warning::Week $WEEK not configured - skipping code quality check"
               echo "week=none" >> $GITHUB_OUTPUT
