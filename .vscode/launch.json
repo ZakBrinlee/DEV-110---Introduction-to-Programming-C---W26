@@ -2,35 +2,13 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Week 01 - Hello GitHub",
+      "name": "Lab - Week 08 - Movie Tracker (starter)",
       "type": "coreclr",
       "request": "launch",
-      "preLaunchTask": "build",
-      "program": "${workspaceFolder}/modules/week-01-hello-github/starter/bin/Debug/net9.0/HelloGitHub.dll",
+      "preLaunchTask": "build: Lab Week 08 (starter)",
+      "program": "${workspaceFolder}/labs/week-8-classes-debugging/starter/bin/Debug/net9.0/MovieTracker.dll",
       "args": [],
-      "cwd": "${workspaceFolder}/modules/week-01-hello-github/starter",
-      "console": "integratedTerminal",
-      "stopAtEntry": false
-    },
-    {
-      "name": "Week 02 - Calculator Lite",
-      "type": "coreclr",
-      "request": "launch",
-      "preLaunchTask": "build",
-      "program": "${workspaceFolder}/modules/week-02-calculator-lite/starter/bin/Debug/net9.0/CalculatorLite.dll",
-      "args": [],
-      "cwd": "${workspaceFolder}/modules/week-02-calculator-lite/starter",
-      "console": "integratedTerminal",
-      "stopAtEntry": false
-    },
-    {
-      "name": "Week 03 - Profile Card",
-      "type": "coreclr",
-      "request": "launch",
-      "preLaunchTask": "build",
-      "program": "${workspaceFolder}/modules/week-03-profile-card/starter/bin/Debug/net9.0/ProfileCard.dll",
-      "args": [],
-      "cwd": "${workspaceFolder}/modules/week-03-profile-card/starter",
+      "cwd": "${workspaceFolder}/labs/week-8-classes-debugging/starter",
       "console": "integratedTerminal",
       "stopAtEntry": false
     }

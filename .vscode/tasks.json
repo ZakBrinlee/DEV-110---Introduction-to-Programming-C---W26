@@ -13,6 +13,17 @@
       }
     },
     {
+      "label": "build: Lab Week 08 (starter)",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "build",
+        "${workspaceFolder}/labs/week-8-classes-debugging/starter/MovieTracker.csproj"
+      ],
+      "problemMatcher": "$msCompile",
+      "group": "build"
+    },
+    {
       "label": "test (clean output)",
       "type": "shell",
       "command": "bash",

@@ -46,9 +46,10 @@ jobs:
             05) ASSIGNMENT="week-05-guess-the-number" ;;
             06) ASSIGNMENT="week-06-text-menu-app" ;;
             07) ASSIGNMENT="week-07-class-roster" ;;
+            08) ASSIGNMENT="week-08-mad-libs" ;;
             *)
               echo "::error::Week $WEEK not yet configured in workflow"
-              echo "::error::Available weeks: 01, 02, 03, 05, 06, 07"
+              echo "::error::Available weeks: 01, 02, 03, 05, 06, 07, 08"
               exit 1
               ;;
           esac
