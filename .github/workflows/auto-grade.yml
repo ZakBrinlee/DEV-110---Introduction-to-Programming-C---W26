@@ -138,19 +138,12 @@ jobs:
         run: |
           cd modules/${{ needs.detect-assignment.outputs.assignment }}
 
-          # Count test results from formatted output
-          # Format: "✅ TEST XX:" or "❌ TEST XX:"
-          PASSED=$(grep -c "✅ TEST" test-output.txt || echo "0")
-          FAILED=$(grep -c "❌ TEST" test-output.txt || echo "0")
-          TOTAL=$((PASSED + FAILED))
-          SKIPPED=0
-
-          echo "📊 Results: $PASSED passed, $FAILED failed, $SKIPPED skipped out of $TOTAL total"
-
-          echo "passed=$PASSED" >> $GITHUB_OUTPUT
-          echo "failed=$FAILED" >> $GITHUB_OUTPUT
-          echo "skipped=$SKIPPED" >> $GITHUB_OUTPUT
-          echo "total=$TOTAL" >> $GITHUB_OUTPUT
+          # Just check if tests passed overall
+          if grep -q "All Tests Passed" test-output.txt; then
+            echo "status=passed" >> $GITHUB_OUTPUT
+          else
+            echo "status=failed" >> $GITHUB_OUTPUT
+          fi
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const fs = require('fs');
@@ -165,23 +158,22 @@ jobs:
               testOutput = 'Could not read test output';
             }
 
-            const passed = parseInt('${{ steps.results.outputs.passed }}') || 0;
-            const failed = parseInt('${{ steps.results.outputs.failed }}') || 0;
-            const skipped = parseInt('${{ steps.results.outputs.skipped }}') || 0;
-            const total = parseInt('${{ steps.results.outputs.total }}') || 0;
             const status = '${{ steps.test.outputs.status }}';
 
             // Extract failed test details from clean output format
             // Format: "❌ TEST XX: Description"
             const failedTests = [];
+            const passedTests = [];
             const lines = testOutput.split('\n');
             for (let i = 0; i < lines.length; i++) {
               if (lines[i].includes('❌ TEST')) {
-                // Extract just the test description
                 const testLine = lines[i].trim();
-                // Remove ANSI color codes if present
                 const cleanLine = testLine.replace(/\x1b\[[0-9;]*m/g, '');
                 failedTests.push(cleanLine);
+              } else if (lines[i].includes('✅ TEST')) {
+                const testLine = lines[i].trim();
+                const cleanLine = testLine.replace(/\x1b\[[0-9;]*m/g, '');
+                passedTests.push(cleanLine);
               }
             }
 
@@ -189,34 +181,43 @@ jobs:
 
             let comment = `## ${emoji} Test Results - Week ${{ needs.detect-assignment.outputs.week }}\n\n`;
             comment += `**Assignment:** \`${{ needs.detect-assignment.outputs.assignment }}\`\n\n`;
-            comment += `| Status | Count |\n`;
-            comment += `|--------|-------|\n`;
-            comment += `| ✅ Passed | ${passed}/${total} |\n`;
-            comment += `| ❌ Failed | ${failed}/${total} |\n`;
-            if (skipped > 0) {
-              comment += `| ⏭️ Skipped | ${skipped}/${total} |\n`;
-            }
-            comment += `\n`;
 
             if (status === 'passed') {
               comment += `### 🎉 Excellent work! All tests passed!\n\n`;
               comment += `Your assignment meets all requirements and is ready for review.\n\n`;
+
+              // Show all passing tests
+              if (passedTests.length > 0) {
+                comment += `### ✅ Tests that pass:\n\n`;
+                passedTests.forEach(test => {
+                  comment += `- ${test}\n`;
+                });
+                comment += `\n`;
+              }
+
               comment += `#### Next Steps:\n`;
               comment += `- Wait for instructor feedback\n`;
               comment += `- Once approved, your PR will be merged\n`;
             } else {
+              // Show failed tests first
               comment += `### 📝 Tests that need attention:\n\n`;
               if (failedTests.length > 0) {
-                const uniqueTests = [...new Set(failedTests)].slice(0, 10);
+                const uniqueTests = [...new Set(failedTests)];
                 uniqueTests.forEach(test => {
                   comment += `- ${test}\n`;
                 });
-                if (failedTests.length > 10) {
-                  comment += `\n_...and ${failedTests.length - 10} more. See detailed output below._\n`;
-                }
               } else {
                 comment += `See detailed test output below for more information.\n`;
               }
+
+              // Show passed tests next
+              if (passedTests.length > 0) {
+                comment += `\n### ✅ Tests that pass:\n\n`;
+                passedTests.forEach(test => {
+                  comment += `- ${test}\n`;
+                });
+              }
+
               comment += `\n### 💡 Next Steps:\n\n`;
               comment += `1. Review the failed tests above\n`;
               comment += `2. Run tests locally to debug:\n`;
