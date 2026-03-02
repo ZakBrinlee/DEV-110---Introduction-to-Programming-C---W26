@@ -142,13 +142,28 @@ jobs:
           echo "🔍 Searching for test summary line..."
           grep -i "test summary" test-output.txt || echo "No 'test summary' line found"
 
+          echo "🔍 Full test output:"
+          cat test-output.txt
+
           # Extract test summary from clean output format
           # Format: "Test summary: total: X, failed: Y, succeeded: Z, skipped: W"
-          # Use sed for better portability instead of grep -P
-          TOTAL=$(grep -i "test summary" test-output.txt | sed -n 's/.*total:[[:space:]]*\([0-9]\+\).*/\1/p' || echo "0")
-          FAILED=$(grep -i "test summary" test-output.txt | sed -n 's/.*failed:[[:space:]]*\([0-9]\+\).*/\1/p' || echo "0")
-          PASSED=$(grep -i "test summary" test-output.txt | sed -n 's/.*succeeded:[[:space:]]*\([0-9]\+\).*/\1/p' || echo "0")
-          SKIPPED=$(grep -i "test summary" test-output.txt | sed -n 's/.*skipped:[[:space:]]*\([0-9]\+\).*/\1/p' || echo "0")
+          # Use awk for reliable parsing
+          SUMMARY_LINE=$(grep -i "test summary" test-output.txt || echo "")
+
+          if [ -n "$SUMMARY_LINE" ]; then
+            echo "📝 Found summary line: $SUMMARY_LINE"
+
+            TOTAL=$(echo "$SUMMARY_LINE" | awk -F'total:' '{print $2}' | awk -F',' '{print $1}' | tr -d ' ' || echo "0")
+            FAILED=$(echo "$SUMMARY_LINE" | awk -F'failed:' '{print $2}' | awk -F',' '{print $1}' | tr -d ' ' || echo "0")
+            PASSED=$(echo "$SUMMARY_LINE" | awk -F'succeeded:' '{print $2}' | awk -F',' '{print $1}' | tr -d ' ' || echo "0")
+            SKIPPED=$(echo "$SUMMARY_LINE" | awk -F'skipped:' '{print $2}' | awk -F',' '{print $1}' | tr -d ' ' || echo "0")
+          else
+            echo "❌ Test summary line not found, defaulting to 0"
+            TOTAL=0
+            FAILED=0
+            PASSED=0
+            SKIPPED=0
+          fi
 
           echo "parsed: total=$TOTAL, passed=$PASSED, failed=$FAILED, skipped=$SKIPPED"
 
