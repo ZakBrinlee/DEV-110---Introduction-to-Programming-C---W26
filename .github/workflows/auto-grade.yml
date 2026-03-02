@@ -138,46 +138,19 @@ jobs:
         run: |
           cd modules/${{ needs.detect-assignment.outputs.assignment }}
 
-          # Debug: Show what we're looking for
-          echo "🔍 Searching for test summary line..."
-          grep -i "test summary" test-output.txt || echo "No 'test summary' line found"
+          # Count test results from formatted output
+          # Format: "✅ TEST XX:" or "❌ TEST XX:"
+          PASSED=$(grep -c "✅ TEST" test-output.txt || echo "0")
+          FAILED=$(grep -c "❌ TEST" test-output.txt || echo "0")
+          TOTAL=$((PASSED + FAILED))
+          SKIPPED=0
 
-          echo "🔍 Full test output:"
-          cat test-output.txt
-
-          # Extract test summary from clean output format
-          # Format: "Test summary: total: X, failed: Y, succeeded: Z, skipped: W"
-          # Use awk for reliable parsing
-          SUMMARY_LINE=$(grep -i "test summary" test-output.txt || echo "")
-
-          if [ -n "$SUMMARY_LINE" ]; then
-            echo "📝 Found summary line: $SUMMARY_LINE"
-
-            TOTAL=$(echo "$SUMMARY_LINE" | awk -F'total:' '{print $2}' | awk -F',' '{print $1}' | tr -d ' ' || echo "0")
-            FAILED=$(echo "$SUMMARY_LINE" | awk -F'failed:' '{print $2}' | awk -F',' '{print $1}' | tr -d ' ' || echo "0")
-            PASSED=$(echo "$SUMMARY_LINE" | awk -F'succeeded:' '{print $2}' | awk -F',' '{print $1}' | tr -d ' ' || echo "0")
-            SKIPPED=$(echo "$SUMMARY_LINE" | awk -F'skipped:' '{print $2}' | awk -F',' '{print $1}' | tr -d ' ' || echo "0")
-          else
-            echo "❌ Test summary line not found, defaulting to 0"
-            TOTAL=0
-            FAILED=0
-            PASSED=0
-            SKIPPED=0
-          fi
-
-          echo "parsed: total=$TOTAL, passed=$PASSED, failed=$FAILED, skipped=$SKIPPED"
+          echo "📊 Results: $PASSED passed, $FAILED failed, $SKIPPED skipped out of $TOTAL total"
 
           echo "passed=$PASSED" >> $GITHUB_OUTPUT
           echo "failed=$FAILED" >> $GITHUB_OUTPUT
           echo "skipped=$SKIPPED" >> $GITHUB_OUTPUT
           echo "total=$TOTAL" >> $GITHUB_OUTPUT
-
-          echo "📊 Results: $PASSED passed, $FAILED failed, $SKIPPED skipped out of $TOTAL total"
-
-      - name: Comment PR with results
-        uses: actions/github-script@v7
-        if: always()
-        with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const fs = require('fs');
