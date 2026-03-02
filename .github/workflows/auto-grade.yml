@@ -138,28 +138,26 @@ jobs:
         run: |
           cd modules/${{ needs.detect-assignment.outputs.assignment }}
 
+          # Debug: Show what we're looking for
+          echo "🔍 Searching for test summary line..."
+          grep -i "test summary" test-output.txt || echo "No 'test summary' line found"
+
           # Extract test summary from clean output format
           # Format: "Test summary: total: X, failed: Y, succeeded: Z, skipped: W"
-          TOTAL=$(grep -oP "total:\s*\K\d+" test-output.txt | head -1 || echo "0")
-          FAILED=$(grep -oP "failed:\s*\K\d+" test-output.txt | head -1 || echo "0")
-          PASSED=$(grep -oP "succeeded:\s*\K\d+" test-output.txt | head -1 || echo "0")
-          SKIPPED=$(grep -oP "skipped:\s*\K\d+" test-output.txt | head -1 || echo "0")
+          # Use sed for better portability instead of grep -P
+          TOTAL=$(grep -i "test summary" test-output.txt | sed -n 's/.*total:[[:space:]]*\([0-9]\+\).*/\1/p' || echo "0")
+          FAILED=$(grep -i "test summary" test-output.txt | sed -n 's/.*failed:[[:space:]]*\([0-9]\+\).*/\1/p' || echo "0")
+          PASSED=$(grep -i "test summary" test-output.txt | sed -n 's/.*succeeded:[[:space:]]*\([0-9]\+\).*/\1/p' || echo "0")
+          SKIPPED=$(grep -i "test summary" test-output.txt | sed -n 's/.*skipped:[[:space:]]*\([0-9]\+\).*/\1/p' || echo "0")
+
+          echo "parsed: total=$TOTAL, passed=$PASSED, failed=$FAILED, skipped=$SKIPPED"
 
           echo "passed=$PASSED" >> $GITHUB_OUTPUT
           echo "failed=$FAILED" >> $GITHUB_OUTPUT
           echo "skipped=$SKIPPED" >> $GITHUB_OUTPUT
           echo "total=$TOTAL" >> $GITHUB_OUTPUT
 
-          # Calculate grade (assuming 100 points max)
-          if [ $TOTAL -gt 0 ]; then
-            GRADE=$((PASSED * 100 / TOTAL))
-          else
-            GRADE=0
-          fi
-          echo "grade=$GRADE" >> $GITHUB_OUTPUT
-
           echo "📊 Results: $PASSED passed, $FAILED failed, $SKIPPED skipped out of $TOTAL total"
-          echo "🎯 Grade: $GRADE/100"
 
       - name: Comment PR with results
         uses: actions/github-script@v7
@@ -183,7 +181,6 @@ jobs:
             const failed = parseInt('${{ steps.results.outputs.failed }}') || 0;
             const skipped = parseInt('${{ steps.results.outputs.skipped }}') || 0;
             const total = parseInt('${{ steps.results.outputs.total }}') || 0;
-            const grade = parseInt('${{ steps.results.outputs.grade }}') || 0;
             const status = '${{ steps.test.outputs.status }}';
 
             // Extract failed test details from clean output format
@@ -201,11 +198,9 @@ jobs:
             }
 
             const emoji = status === 'passed' ? '✅' : '❌';
-            const gradeEmoji = grade >= 90 ? '🌟' : grade >= 80 ? '🎉' : grade >= 70 ? '👍' : grade >= 60 ? '📚' : '💪';
 
             let comment = `## ${emoji} Test Results - Week ${{ needs.detect-assignment.outputs.week }}\n\n`;
             comment += `**Assignment:** \`${{ needs.detect-assignment.outputs.assignment }}\`\n\n`;
-            comment += `### ${gradeEmoji} Score: ${grade}/100\n\n`;
             comment += `| Status | Count |\n`;
             comment += `|--------|-------|\n`;
             comment += `| ✅ Passed | ${passed}/${total} |\n`;
