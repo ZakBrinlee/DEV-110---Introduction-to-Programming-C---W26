@@ -3,10 +3,11 @@
 - Instructor: Zak Brinlee
 - Term: Winter 2026
 -
-- Programmer: YourName
+- Programmer: Ujwal Garine
 - Assignment: Week 8: Mad Libs (Structure + Debugging)
 -
-- What does this program do?:
+- What does this program do?: it is a class that represents a Mad Libs story template, containing the title, prompts,
+ and template text. It also has a method to generate the final story based on user input.
 - Represents a Mad Libs story template with prompts and story text.
 - */
 
@@ -34,7 +35,15 @@ public class StoryTemplate
     // - Return the formatted story
     public string GenerateStory(string[] words)
     {
-        throw new NotImplementedException();
+        bool valid = words.Length == Prompts.Length;
+        if (valid)
+        {
+            return FormatStory(words);
+        }
+        else
+        {
+            throw new ArgumentException($"Prompts length ({Prompts.Length}) does not match words length ({words.Length}).");
+        }
     }
 
     // TODO 2: Implement FormatStory method (private helper)
@@ -44,6 +53,11 @@ public class StoryTemplate
     // - Return the formatted story
     private string FormatStory(string[] words)
     {
-        throw new NotImplementedException();
+        object[] wordObjects = new object[words.Length];
+        for (int i = 0; i < words.Length; i++)
+        {
+            wordObjects[i] = words[i];
+        }
+        return string.Format(TemplateText, wordObjects);
     }
 }
