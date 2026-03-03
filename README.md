@@ -12,10 +12,10 @@ This course is organized into 12 weekly modules, each building on the previous w
 | 2    | C# Basics: Types, Expressions, I/O | No graded assignment (practice week)                    |
 | 3    | Variables + Data Modeling          | [Calculator Lite](modules/week-02-calculator-lite/)     |
 | 4    | Decisions: If/Else Logic           | [Profile Card Generator](modules/week-03-profile-card/) |
-| 5    | Loops: Repetition + Validation     | Guess the Number _(Coming Soon)_                        |
-| 6    | Strings + Console Output Patterns  | Text Menu App _(Coming Soon)_                           |
-| 7    | Arrays: Collections + Indexing     | Class Roster Stats _(Coming Soon)_                      |
-| 8    | Program Structure + Debugging      | MadLibs Generator _(Coming Soon)_                       |
+| 5    | Loops: Repetition + Validation     | [Guess the Number](modules/week-05-guess-the-number/)   |
+| 6    | Strings + Console Output Patterns  | [Text Menu App](modules/week-06-text-menu-app/)         |
+| 7    | Arrays: Collections + Indexing     | [Class Roster Stats](modules/week-07-class-roster/)     |
+| 8    | Program Structure + Debugging      | [MadLibs Generator](modules/week-08-mad-libs/)          |
 | 9    | Methods: Decomposition + Reuse     | Methods Refactor _(Coming Soon)_                        |
 | 10   | Windows Forms: Events + UI         | First GUI App _(Coming Soon)_                           |
 | 11   | Open Lab / Final Project Work      | Work on Final Project                                   |
