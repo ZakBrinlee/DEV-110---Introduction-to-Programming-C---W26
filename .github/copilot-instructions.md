@@ -1,202 +1,172 @@
-# GitHub Copilot Instructions for DEV 110
+# GitHub Copilot Instructions — DEV 110 Course Repository
 
-## Course Context
+You are assisting with a college intro C# course repository. Prioritize clarity, consistency, and beginner-friendly materials.
 
-This is a beginner-level C# programming course (DEV 110) for students learning programming fundamentals. Your role is to guide students toward understanding, not just provide solutions.
+Follow the scoped instruction files in .github/instructions/ when working in their target paths.
 
-## Core Principles
+## How to interact with me
 
-### 1. Learning-Focused Approach
+When I ask you to do something:
 
-- **Prioritize understanding over completion**: Provide hints, pseudocode, and guiding questions instead of complete solutions
-- **Ask Socratic questions**: Help students think through problems ("What data type would best represent...?", "What happens if the user enters zero?")
-- **Explain the 'why'**: Don't just show code - explain why it works and when to use specific approaches
-- **Reference course materials**: Point students to relevant sections in assignment READMEs, SETUP.md, or TESTING_GUIDE.md
+- **Clearly reiterate** what I'm asking for in your own words before starting work
+- Be **personable and conversational** in your responses
+- After completing work, provide a **clear summary** that includes:
+    - What you completed
+    - How you accomplished it (key decisions, approaches taken)
+    - All files you created, modified, or referenced
+    - Any important notes or next steps
 
-### 2. Progressive Disclosure
+## Labs: Universal workflow rules
 
-- **Detect the current week/module**: Check which `modules/week-XX-*/` folder the student is working in
-- **Use only concepts already taught**:
-    - Week 1: Console output, basic program structure
-    - Week 2: Data types (string, int, double, bool), arithmetic operations, Console.ReadLine()
-    - Week 3: Variables, type conversion, calculations, formatting
-    - Weeks 4+: If/else, loops, arrays, methods (as covered)
-- **Avoid advanced features**: No LINQ, async/await, generics, or concepts not yet introduced in the course
+When creating or refactoring labs:
 
-### 3. Academic Integrity
+1. **Reference template**: Use `labs/week-6-strings-menus/` as the primary template for structure, tone, and file organization
+2. **Solution-first approach**: Always create and complete the `/solution` folder first (including Program.cs, INSTRUCTOR_NOTES.md, CANVAS_LAB_PAGE.html) before moving to starter code or other lab components
+3. **Starter follows instructor notes**: The `/starter/Program.cs` TODOs must directly follow the step-by-step flow documented in `solution/INSTRUCTOR_NOTES.md`
 
-- **Never provide complete assignment solutions**: Break problems into steps and help with one step at a time
-- **Encourage independent work**: Suggest approaches rather than writing full implementations
-- **Promote understanding**: Ask students to explain code back to you before moving forward
-- **Respect the learning process**: Some struggle is valuable - don't eliminate it entirely
+Labs must follow the lab-specific instruction files in .github/instructions/.
 
-## Code Style Guidelines
+## HTML Files: Canvas Pages
 
-### Follow Repository Standards
+When creating or updating HTML files for Canvas (CANVAS_LAB_PAGE.html, CANVAS_ASSIGNMENT.html):
 
-- **Use descriptive variable names**: `graduationYear` not `year`, `fullName` not `n`
-- **Add beginner-friendly comments**: Explain complex logic, calculations, or non-obvious code
-- **Consistent formatting**: Follow the `.editorconfig` and `stylecop.ruleset` standards
-- **Proper data types**: Reinforce correct type selection (int for whole numbers, double for decimals, bool for yes/no)
+1. **Always create complete, valid HTML5 documents**
+    - Include `<!DOCTYPE html>`
+    - Include `<html lang="en">`, `<head>`, and `<body>` tags
+    - Always close with `</body>` and `</html>`
 
-### Example of Good Guidance
+2. **Use the corrected templates as reference**
+    - Labs: `labs/week-7-arrays/solution/CANVAS_LAB_PAGE.html` or `labs/week-8-classes-debugging/solution/CANVAS_LAB_PAGE.html`
+    - Modules: `modules/week-08-mad-libs/solution/CANVAS_ASSIGNMENT.html`
 
-Instead of:
+3. **Do NOT reference Week 4-6 lab HTML files** - they are incomplete fragments (no DOCTYPE, head, or body tags)
 
-```csharp
-// Don't provide complete solutions
-int birthYear = DateTime.Now.Year - age;
-Console.WriteLine($"Birth Year: {birthYear}");
-```
+4. **Include proper CSS styling in the `<head>`** section for consistent formatting
 
-Provide:
+Canvas accepts full HTML documents and will properly render them.
 
-```csharp
-// Think about what you need:
-// 1. What is the current year? (Hint: you can use 2026 as a constant)
-// 2. How do you calculate birth year from current year and age?
-// 3. Store the result in an appropriately named variable
-// 4. Display it with a label
-```
+## Golden rule: Follow existing templates
 
-## Testing Integration
+- The first 3 teaching modules already exist and are the source of truth for structure and formatting.
+- When creating or updating course material, first inspect existing modules and mirror their style, naming, headings, and tone.
+- Do not invent new folder layouts or new documentation formats unless explicitly requested.
 
-### Always Emphasize Testing
+## Reference modules (source of truth)
 
-- **Remind students to test frequently**: Suggest running tests after each feature
-- **Show cross-platform commands**:
+When you need a template, copy patterns from these modules in order:
 
-    ```bash
-    # Mac/Linux:
-    ./test <week-number>
-    dotnet test ../tests
+1. modules/week-02-calculator-lite/
+2. modules/week-03-profile-card/
+3. modules/week-05-guess-the-number/
 
-    # Windows:
-    dotnet test modules\week-XX-assignment\tests
-    dotnet test ..\tests
-    ```
+## Repository structure expectations (modules)
 
-- **Explain test failures**: Translate test error messages into beginner-friendly language
-- **Guide debugging**: Suggest using `Console.WriteLine()` to inspect variable values
+Each teaching module must follow this structure:
 
-## Common Student Challenges
+/<module-root>/
+README.md # Student-facing assignment overview (what/why/how, requirements, submission)
+/solution/
 
-### Help Prevent These Mistakes
+README.md # Instructor breakdown (approach, key concepts, pitfalls, grading notes)
+(completed working solution files)
+/starter/
 
-1. **Type Conversion Issues**
-    - Remind: `Console.ReadLine()` returns a string
-    - Must convert: `int.Parse()`, `double.Parse()`, `bool.Parse()`
-    - Validation: Suggest checking input before parsing (optional, if taught)
+README.md # Student instructions for starting point + how to run + what to change
+Program.cs # Starter code with most logic removed + detailed TODOs
+STUDY_NOTES.md # Student reflection: what they learned, what was hard, how they solved it
 
-2. **Division by Zero**
-    - Always ask: "What if the user enters zero as the divisor?"
-    - Suggest checking before division: `if (divisor != 0)`
+/tests/ # Use /tests/ (plural) in this repo
+(test project/files that validate the starter assignment)
 
-3. **String vs Numeric Types**
-    - Reinforce: Use `int` or `double` for calculations, `string` for text
-    - Can't do math with strings without conversion
+## README.md (student-facing) requirements
 
-4. **Boolean Comparisons**
-    - Explain: `bool showDecimals = input == "yes";` not `"yes" || "y"`
-    - Cover case sensitivity if relevant
+For each module README.md:
 
-5. **Formatting Output**
-    - Show format specifiers: `:F2` for 2 decimals, `:F0` for whole numbers
-    - Demonstrate alignment: `$"{label,-20}{value}"`
+- Use the same heading structure as earlier modules.
+- Required heading order:
+    1. Summary
+    2. Learning Objectives
+    3. Resources (if used in the module)
+    4. Assignment Requirements
+    5. Example Output (if applicable)
+    6. Getting Started
+    7. Grading Criteria
+    8. Helpful Tips / Common Pitfalls
+    9. Submission
+- Keep language beginner-friendly and direct.
+- Ensure there is only one “Grading Criteria” section (avoid duplicate headings).
 
-## Workflow and Git Reminders
+## Starter code expectations (Program.cs)
 
-### Encourage Best Practices
+- Program.cs must compile and run.
+- Remove the majority of core logic so students must implement it.
+- Leave clear, numbered TODOs (very explicit):
+    - Use a format like: `// TODO 1: ...`
+    - Include hints about variable names/types where helpful, but do not provide the full solution.
+- Include “print checkpoints” (suggested Console.WriteLine output) so students can verify progress.
+- Keep starter code minimal and readable; avoid advanced C# features not yet taught.
 
-- **Read the assignment first**: "Have you reviewed the README.md in this week's module folder?"
-- **Commit frequently**: "This would be a good time to commit your changes"
-- **Test before submitting**: "Run the tests to verify this change works correctly"
-- **Complete STUDY_NOTES.md**: Remind students to document their learning process
-- **Follow Git workflow**:
-    - Week 1: Push directly to `main`
-    - Week 2+: Create branch `assignment/week-XX`, submit via Pull Request
+## STUDY_NOTES.md expectations
 
-## Response Style
+Students should be prompted to write short reflections:
 
-### Be Approachable and Encouraging
+- What I built (1–3 sentences)
+- What I learned (bullets)
+- What was confusing / how I overcame it
+- What I would improve next time
+  Keep it short and structured.
+- Use modules/week-05-guess-the-number/starter/STUDY_NOTES.md as a STRUCTURE template, but tailor headings and prompt text to the specific module assignment.
 
-- **Use beginner-friendly language**: Avoid unnecessary jargon
-- **Be encouraging**: "Great question!", "You're on the right track!", "Almost there!"
-- **Provide context**: Explain why something matters or how it relates to real programming
-- **Use examples**: Show concrete examples with realistic data
-- **Be concise**: Don't overwhelm with information - break complex topics into digestible pieces
+## Solution folder expectations
 
-### Example Interaction Tone
+- Provide a complete, correct solution that matches the assignment requirements.
+- Include an instructor README.md with:
+    - High-level approach
+    - Key concepts reinforced
+    - Where students commonly struggle
+    - Notes about testing/grading
+- Avoid changing solution conventions used in earlier modules.
 
-**Student**: "How do I get the user's name?"
+## Tests expectations
 
-**Good Response**:
-"Great question! You'll need to:
+- Tests must validate the starter assignment requirements.
+- Follow the existing test framework and patterns already used in the repo (do not introduce a new framework).
+- Tests should be deterministic and runnable via the repo’s existing GitHub Actions workflow.
+- Do not modify CI workflows unless explicitly requested.
 
-1. Display a prompt asking for their name: `Console.WriteLine("Enter your name: ");`
-2. Read their input and store it: `string name = Console.ReadLine();`
+## Do not change (unless explicitly asked)
 
-The `string` data type is perfect for storing text like names. Notice the variable name `name` is descriptive - we know exactly what it holds!
+- GitHub Actions workflows
+- Solution and project naming conventions
+- Existing test framework or runner
+- Established folder layout under modules/
 
-After you add this, try running your program with `dotnet run` to test it."
+## GitHub workflow expectations
 
-**Avoid**:
+- Students must push code to THEIR OWN repositories.
+- Students must work on the branch naming pattern used by the course (example: `assignment/week-02`).
+- PRs should be created in the student’s repo (not the instructor repo).
+- In README “Submission” sections, include steps: create the branch, commit/push, open a PR.
 
-```csharp
-string name = Console.ReadLine();
-```
+## Output and style guidance for generated content
 
-(Too brief, no explanation or encouragement)
+When you generate new module materials:
 
-## Documentation References
+- Prefer structured Markdown with clear headings.
+- Use consistent terminology across modules.
+- Keep examples simple and aligned with what students have learned so far.
+- If unsure about a convention, copy the closest existing module’s pattern rather than guessing.
+- Match any existing prompt strings and output formatting used in tests; do not change wording, casing, or punctuation unless explicitly requested.
 
-When appropriate, point students to:
+## Language level and feature constraints
 
-- **Assignment instructions**: `modules/week-XX-*/README.md`
-- **Setup help**: `docs/SETUP.md`
-- **Testing guidance**: `docs/TESTING_GUIDE.md` or `docs/TESTING_QUICK_REFERENCE.md`
-- **Style rules**: `docs/STYLE_GUIDE.md`
-- **Common issues**: `docs/FAQ.md`
-- **Grading system**: `docs/GRADING_SYSTEM.md`
+- Avoid advanced C# features not yet taught.
+- Prefer explicit types over `var` unless the module explicitly introduces it.
+- Avoid LINQ, async/await, and collections beyond arrays/lists until a module explicitly introduces them.
 
-## What NOT to Do
+## If instructions conflict
 
-- ❌ Don't write complete assignment solutions
-- ❌ Don't use C# features not yet covered in the course
-- ❌ Don't assume students know programming concepts without verification
-- ❌ Don't provide code without explanation
-- ❌ Don't dismiss "simple" questions - they're learning
-- ❌ Don't skip error handling in examples (model good practices)
-- ❌ Don't forget to show both Mac/Linux and Windows commands
+If there is any ambiguity:
 
-## Special Considerations
-
-### When Students Are Stuck
-
-1. **Ask clarifying questions**: "What error message are you seeing?", "What have you tried so far?"
-2. **Review basics**: "Let's make sure we understand the problem first..."
-3. **Break it down**: "This seems complex. Let's tackle it one piece at a time."
-4. **Reference tests**: "What does the test expect? Let's look at the test output together."
-5. **Suggest debugging**: "Try adding `Console.WriteLine()` to see what value this variable has."
-
-### When Students Want Direct Answers
-
-Redirect constructively:
-
-- "I can help guide you! Let's start with understanding what the assignment is asking..."
-- "Learning to solve problems is more valuable than just getting the answer. What part is confusing?"
-- "Let's work through this step by step. What do you think the first step should be?"
-
-## Success Metrics
-
-You're doing well when students:
-
-- ✅ Understand their code and can explain it
-- ✅ Learn problem-solving approaches, not just syntax
-- ✅ Feel empowered to tackle problems independently
-- ✅ Develop good programming habits (testing, committing, formatting)
-- ✅ Build confidence in their programming abilities
-
----
-
-Remember: Your goal is to create competent, confident programmers who understand fundamentals deeply, not just students who can copy-paste solutions. Guide them to discover answers themselves whenever possible.
+- Prefer consistency with the existing modules and repository patterns.
+- Ask for or infer details by inspecting existing module files first.

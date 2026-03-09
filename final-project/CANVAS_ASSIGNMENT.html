@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Final Project: Build Your Own App - Canvas Assignment</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			max-width: 900px;
+			margin: 0 auto;
+			padding: 20px;
+			line-height: 1.6;
+		}
+		.alert-info {
+			background-color: #d9edf7;
+			border: 1px solid #bce8f1;
+			padding: 15px;
+			border-radius: 4px;
+			margin-bottom: 20px;
+		}
+		.alert-success {
+			background-color: #dff0d8;
+			border: 1px solid #d6e9c6;
+			padding: 15px;
+			border-radius: 4px;
+			margin-bottom: 20px;
+		}
+		.alert-warning {
+			background-color: #fcf8e3;
+			border: 1px solid #faebcc;
+			padding: 15px;
+			border-radius: 4px;
+			margin-bottom: 20px;
+		}
+		code {
+			background-color: #f4f4f4;
+			padding: 2px 6px;
+			border-radius: 3px;
+			font-family: 'Courier New', monospace;
+		}
+		pre {
+			background-color: #f4f4f4;
+			padding: 15px;
+			border-radius: 4px;
+			overflow-x: auto;
+		}
+		table {
+			width: 100%;
+			margin: 20px 0;
+		}
+		th, td {
+			padding: 10px;
+			text-align: left;
+		}
+		th {
+			background-color: #f4f4f4;
+		}
+	</style>
+</head>
+<body>
+	<h1>🏆 Final Project: Build Your Own App</h1>
+	<div class="alert-info">
+		<p>
+			<strong>Extra Credit — Show what you've learned!</strong> This is your chance
+			to design and build a console app of your own choosing. There is no starter code
+			and no automated tests — you build everything from scratch using the skills you've
+			practiced all quarter.
+		</p>
+		<p>
+			<strong>Due Date:</strong> [Insert due date]<br />
+			<strong>Points:</strong> 75 (+ up to 25 bonus points)<br />
+			<strong>Submission Type:</strong> GitHub Pull Request URL
+		</p>
+	</div>
+	<hr />
+
+	<h2>🎯 Learning Objectives</h2>
+	<p>By completing this project, you will demonstrate that you can:</p>
+	<ul>
+		<li>Design and plan a program before you write code</li>
+		<li>Use all of the core C# concepts from the course together in one cohesive app</li>
+		<li>Create, organize, and structure a multi-file C# project from scratch</li>
+		<li>Reflect on your own design decisions and what you learned</li>
+	</ul>
+	<hr />
+
+	<h2>📋 Prerequisites</h2>
+	<h3>Before You Begin</h3>
+	<p><strong>1. Complete Week 10 Assignment</strong></p>
+	<ul>
+		<li>Your Week 10 pull request should be merged</li>
+		<li>Pull the latest changes from main: <code>git pull origin main</code></li>
+	</ul>
+	<p><strong>2. Read the full README in the final-project folder</strong></p>
+	<pre><code>final-project/README.md</code></pre>
+	<p><strong>3. Fill out DATA_MODEL.md before writing any code</strong></p>
+	<pre><code>final-project/DATA_MODEL.md</code></pre>
+	<hr />
+
+	<h2>🔄 Git Workflow for the Final Project</h2>
+	<p>Use the same branch workflow as prior weeks:</p>
+
+	<h3>Step 1: Create a Branch</h3>
+	<pre><code># Make sure you're on main and it's up to date
+git checkout main
+git pull origin main
+
+# Create a new branch for your final project
+git checkout -b assignment/final-project</code></pre>
+
+	<h3>Step 2: Scaffold Your Project</h3>
+	<pre><code># Navigate to the final-project folder
+cd final-project
+
+# Create a new console app with your chosen name (replace YourAppName)
+dotnet new console -n YourAppName
+
+# Open the new folder
+cd YourAppName</code></pre>
+
+	<h3>Step 3: Build and Test Your App</h3>
+	<pre><code># Run your app at any time
+dotnet run
+
+# Format your code before committing
+dotnet format</code></pre>
+
+	<h3>Step 4: Commit Your Work</h3>
+	<pre><code># Stage everything in the final-project folder
+git add final-project/
+
+# Commit with a clear message
+git commit -m "Final Project: [Your App Name]"</code></pre>
+
+	<h3>Step 5: Push to GitHub</h3>
+	<pre><code># Push your branch
+git push -u origin assignment/final-project</code></pre>
+
+	<h3>Step 6: Create Pull Request</h3>
+	<ol>
+		<li>Go to your repository on GitHub</li>
+		<li>Click "Compare &amp; pull request" button</li>
+		<li>Set base branch to <code>main</code></li>
+		<li>Title: <code>Final Project: [Your App Name]</code></li>
+		<li>Add a short description of what your app does</li>
+		<li>Click "Create pull request"</li>
+	</ol>
+
+	<h3>Step 7: Submit PR URL on Canvas</h3>
+	<p>
+		Copy the pull request URL and submit it in the Canvas assignment text box.
+		If you recorded a video walkthrough for bonus points, include the video link in the same text box.
+	</p>
+	<hr />
+
+	<h2>📤 What to Submit on Canvas</h2>
+	<div class="alert-success">
+		<p>
+			Submit the <strong>URL of your pull request</strong> in the text submission box.
+		</p>
+		<p>Example URL format:</p>
+		<pre><code>https://github.com/<strong>YourUsername</strong>/DEV-110---Introduction-to-Programming-C---W26/pull/12</code></pre>
+		<p>
+			If you recorded a video walkthrough for the bonus 25 points, paste the video link
+			(YouTube, Loom, Google Drive, etc.) on a second line in the same text box.
+		</p>
+		<p>
+			<strong>Do not merge your pull request</strong> — I'll review it and provide
+			feedback through GitHub's review system.
+		</p>
+	</div>
+	<hr />
+
+	<h2>📝 Assignment Requirements</h2>
+	<div class="alert-warning">
+		<p>
+			<strong>You choose the app idea.</strong> It can be anything that interests you —
+			a personal budget tracker, a recipe manager, a contact book, a simple quiz game,
+			a workout log — as long as it demonstrates the required concepts listed below.
+			Keep it simple and focused; a small app done well is better than a large one left half-finished.
+		</p>
+	</div>
+
+	<h3>Part 1: Plan First — DATA_MODEL.md (10 points)</h3>
+	<p>Before writing any code, fill out <code>final-project/DATA_MODEL.md</code> with:</p>
+	<ul>
+		<li>A 1–2 sentence scenario describing what your app does</li>
+		<li>At least <strong>5 named inputs</strong> with their data types</li>
+		<li>Any calculated or derived values</li>
+		<li>What the user will see as output</li>
+		<li>One edge case your app needs to handle</li>
+	</ul>
+
+	<h3>Part 2: Build Your App — Required Concepts (40 points)</h3>
+	<p>Your app must demonstrate <strong>all 8</strong> of the following concepts:</p>
+	<table style="border-collapse: collapse" border="2">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>Required Concept</th>
+				<th>Introduced</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>1</td>
+				<td>Variables using appropriate data types (<code>string</code>, <code>int</code>, <code>double</code>, <code>bool</code>)</td>
+				<td>Week 3</td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>If/else decisions (at least one conditional branch)</td>
+				<td>Week 4</td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>At least one loop (<code>while</code>, <code>do-while</code>, or <code>for</code>)</td>
+				<td>Week 5</td>
+			</tr>
+			<tr>
+				<td>4</td>
+				<td>Formatted string output (labels, alignment, or headers)</td>
+				<td>Week 6</td>
+			</tr>
+			<tr>
+				<td>5</td>
+				<td>An array or <code>List&lt;T&gt;</code> storing multiple items</td>
+				<td>Week 7</td>
+			</tr>
+			<tr>
+				<td>6</td>
+				<td>At least one custom class in its own <code>.cs</code> file</td>
+				<td>Week 8</td>
+			</tr>
+			<tr>
+				<td>7</td>
+				<td>At least two named methods beyond <code>Main</code></td>
+				<td>Week 9</td>
+			</tr>
+			<tr>
+				<td>8</td>
+				<td>Read from or write to a file (CSV or plain text)</td>
+				<td>Week 10</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<h3>Part 3: Code Quality (5 points)</h3>
+	<ul>
+		<li>Include the course file header in every <code>.cs</code> file</li>
+		<li>Run <code>dotnet format</code> before committing</li>
+		<li>Use clear, readable variable and method names</li>
+	</ul>
+
+	<h3>Part 4: Reflection — README.md (10 points)</h3>
+	<p>Fill out the <strong>reflection section</strong> at the bottom of <code>final-project/README.md</code>:</p>
+	<ul>
+		<li>What your app does (1–3 sentences)</li>
+		<li>Why you chose this idea</li>
+		<li>Which required concepts you used and where</li>
+		<li>What was most challenging and how you solved it</li>
+		<li>Total time spent and a rough breakdown</li>
+	</ul>
+	<hr />
+
+	<h2>🎬 Bonus: Video Walkthrough (+25 points)</h2>
+	<div class="alert-info">
+		<p>
+			Record a <strong>5–10 minute video</strong> that includes:
+		</p>
+		<ol>
+			<li><strong>App demo</strong> — Run your app and walk through what it does (2–4 min)</li>
+			<li><strong>Code tour</strong> — Open your code and briefly explain where each required concept appears (3–6 min)</li>
+		</ol>
+		<p>
+			Upload to YouTube (unlisted), Loom, or Google Drive (shareable link) and paste the URL in the Canvas submission text box alongside your PR link.
+		</p>
+		<p>
+			<em>Tip: You don't need to be polished — just clear and genuine. Screen recording with your voice is all you need.</em>
+		</p>
+	</div>
+	<hr />
+
+	<h2>✅ Grading Rubric</h2>
+	<table style="border-collapse: collapse" border="2">
+		<thead>
+			<tr>
+				<th>Area</th>
+				<th>Points</th>
+				<th>What's Evaluated</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><strong>DATA_MODEL.md</strong></td>
+				<td>10</td>
+				<td>Completed before coding — scenario, 5+ inputs with types, outputs, edge case</td>
+			</tr>
+			<tr>
+				<td><strong>App compiles &amp; runs</strong></td>
+				<td>10</td>
+				<td>Program builds with <code>dotnet build</code> and runs without crashing</td>
+			</tr>
+			<tr>
+				<td><strong>Required concepts (8 × 5 pts)</strong></td>
+				<td>40</td>
+				<td>All 8 course concepts clearly demonstrated in working code</td>
+			</tr>
+			<tr>
+				<td><strong>Code quality</strong></td>
+				<td>5</td>
+				<td>File header present, code formatted, readable names</td>
+			</tr>
+			<tr>
+				<td><strong>README reflection</strong></td>
+				<td>10</td>
+				<td>All reflection prompts answered thoughtfully</td>
+			</tr>
+			<tr>
+				<td><strong>Total</strong></td>
+				<td><strong>75</strong></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><strong>Bonus: Video walkthrough</strong></td>
+				<td><strong>+25</strong></td>
+				<td>5–10 min video covering app demo + code tour</td>
+			</tr>
+		</tbody>
+	</table>
+	<hr />
+
+	<h2>💡 Tips for Success</h2>
+	<ul>
+		<li><strong>Start with DATA_MODEL.md</strong> — planning before coding saves you from rewriting everything halfway through</li>
+		<li><strong>Keep it small</strong> — a Contact Book with 4 menu options is better than a half-finished e-commerce system</li>
+		<li><strong>Build one piece at a time</strong> — get <code>dotnet run</code> working early, then add features one by one</li>
+		<li><strong>Commit often</strong> — small commits are easier to undo if something breaks</li>
+		<li><strong>Use <code>dotnet format</code></strong> before your final commit to clean up spacing and style automatically</li>
+		<li><strong>Re-read the requirements checklist</strong> before submitting — make sure all 8 concepts are clearly present</li>
+	</ul>
+</body>
+</html>
