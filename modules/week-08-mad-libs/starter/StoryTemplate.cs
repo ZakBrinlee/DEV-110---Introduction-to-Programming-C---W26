@@ -3,7 +3,7 @@
 - Instructor: Zak Brinlee
 - Term: Winter 2026
 -
-- Programmer: YourName
+- Programmer: Cleciane Oliveira Silva
 - Assignment: Week 8: Mad Libs (Structure + Debugging)
 -
 - What does this program do?:
@@ -34,7 +34,11 @@ public class StoryTemplate
     // - Return the formatted story
     public string GenerateStory(string[] words)
     {
-        throw new NotImplementedException();
+        if (words.Length != Prompts.Length)
+        {
+            throw new ArgumentException("The number of words must match the number of prompts.");
+        }
+        return FormatStory(words);
     }
 
     // TODO 2: Implement FormatStory method (private helper)
@@ -44,6 +48,13 @@ public class StoryTemplate
     // - Return the formatted story
     private string FormatStory(string[] words)
     {
-        throw new NotImplementedException();
+        object[] values = new object[words.Length];
+
+        for (int i = 0; i < words.Length; i++)
+        {
+            values[i] = words[i];
+        }
+
+        return string.Format(TemplateText, values);
     }
 }

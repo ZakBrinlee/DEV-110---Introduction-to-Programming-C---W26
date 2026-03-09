@@ -3,7 +3,7 @@
 - Instructor: Zak Brinlee
 - Term: Winter 2026
 -
-- Programmer: YourName
+- Programmer: Cleciane Oliveira Silva
 - Assignment: Week 8: Mad Libs (Structure + Debugging)
 -
 - What does this program do?:

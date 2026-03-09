@@ -3,7 +3,7 @@
 - Instructor: Zak Brinlee
 - Term: Winter 2026
 -
-- Programmer: YourName
+- Programmer: Cleciane Oliveira Silva
 - Assignment: Week 8: Mad Libs (Structure + Debugging)
 -
 - What does this program do?:
@@ -35,6 +35,7 @@ public class Program
             string[] words = CollectWords(template);
 
             string story = template.GenerateStory(words);
+            Console.WriteLine();
             Console.WriteLine(story);
             Console.WriteLine();
 
@@ -53,7 +54,50 @@ public class Program
     // - Return the appropriate StoryTemplate (see template details in README)
     private static StoryTemplate ChooseTemplate()
     {
-        throw new NotImplementedException();
+        Console.WriteLine("1) Debugging at the Zoo");
+        Console.WriteLine("2) The Standup Meeting");
+
+        int choice = ReadIntInRange("Choose a template (1-2): ", 1, 2);
+
+        if (choice == 1)
+        {
+            return new StoryTemplate(
+                "Debugging at the Zoo",
+                new string[]
+                {
+                    "Enter an adjective: ",
+                    "Enter an animal (plural): ",
+                    "Enter a verb ending in -ing: ",
+                    "Enter a programming language: ",
+                    "Enter a debugging tool (example: breakpoint): ",
+                    "Enter a number: ",
+                    "Enter an emotion: ",
+                    "Enter an exclamation: "
+                },
+                "Today i visited the {0} zoo. I saw {2} {2} while writing {3}. " +
+                "I used a {4} {5} times until the bug disappeared." +
+                "I felt {6} and yelled, \"{7}!\""
+            );
+        }
+
+        return new StoryTemplate(
+            "The Standup Meeting",
+            new string[]
+            {
+                "Enter a name: ",
+                "Enter an adjective: ",
+                "Enter a noun: ",
+                "Enter a verb (past tense): ",
+                "Enter a number: ",
+                "Enter a plural noun: ",
+                "Enter a type of bug (example: null reference): ",
+                "Enter a snack: "
+            },
+            "At the standup meeting, {0} gave a {1} update about the {2}. " +
+            "They {3} for {4} minutes about {5}, then reported a {6} bug. " +
+            "After the meeting, everyone celebrated with {7}."
+        );
+        //throw new NotImplementedException();
     }
 
     // TODO 3: Implement CollectWords
@@ -65,7 +109,18 @@ public class Program
     // - Return the array of collected words
     private static string[] CollectWords(StoryTemplate template)
     {
-        throw new NotImplementedException();
+        Logger.Info($"Collecting {template.Prompts.Length} words for: {template.Title}");
+
+        string[] words = new string[template.Prompts.Length];
+
+        for (int i = 0; i < template.Prompts.Length; i++)
+        {
+            words[i] = ReadNonEmptyString(template.Prompts[i]);
+        }
+
+        return words;
+
+        //throw new NotImplementedException();
     }
 
     // TODO 4: Implement ReadYesNo
@@ -78,7 +133,22 @@ public class Program
     // - Return true for "y", false for "n"
     private static bool ReadYesNo(string prompt)
     {
-        throw new NotImplementedException();
+        while (true)
+        {
+            Console.Write(prompt);
+            string input = (Console.ReadLine() ?? string.Empty).Trim();
+
+            if (input.Equals("y", StringComparison.OrdinalIgnoreCase))
+            {
+                return true;
+            }
+
+            if (input.Equals("n", StringComparison.OrdinalIgnoreCase))
+            {
+                return false;
+            }
+        }
+        // throw new NotImplementedException();
     }
 
     // TODO 5: Implement ReadIntInRange
@@ -91,7 +161,20 @@ public class Program
     // - Return the valid integer
     private static int ReadIntInRange(string prompt, int min, int max)
     {
-        throw new NotImplementedException();
+        int number = 0;
+        bool isValid;
+
+        do
+        {
+            Console.Write(prompt);
+            string input = (Console.ReadLine() ?? string.Empty).Trim();
+
+            isValid = int.TryParse(input, out number) && number >= min && number <= max;
+        }
+        while (!isValid);
+        return number;
+
+        // throw new NotImplementedException();
     }
 
     // TODO 6: Implement ReadNonEmptyString
@@ -103,6 +186,16 @@ public class Program
     // - Return the valid non-empty string
     private static string ReadNonEmptyString(string prompt)
     {
-        throw new NotImplementedException();
+        string input;
+
+        do
+        {
+            Console.Write(prompt);
+            input = (Console.ReadLine() ?? string.Empty).Trim();
+        }
+        while (string.IsNullOrWhiteSpace(input));
+
+        return input;
+        // throw new NotImplementedException();
     }
 }
