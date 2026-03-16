@@ -8,3 +8,4 @@ What keyword exits a loop immediately?,break
 What data type stores decimal numbers?,double
 What keyword defines a method that returns nothing?,void
 What collection type grows dynamically in C#?,List
+What is a full name of bool?,boolean

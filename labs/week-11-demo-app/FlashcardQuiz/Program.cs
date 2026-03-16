@@ -52,7 +52,7 @@ internal class Program
                     RunQuiz(cards);
                     break;
                 case "4":
-                    // SaveCards(filePath, cards);
+                    SaveCards(filePath, cards);
                     break;
                 case "5":
                     running = false;
@@ -174,7 +174,12 @@ internal class Program
             Console.WriteLine("Keep studying - you'll get there!");
         }
     }
-    private static void SaveCards(string filePath, List<FlashCard> cards) { }
+    private static void SaveCards(string filePath, List<FlashCard> cards)
+    {
+        string[] lines = cards.Select(c => c.ToCSV()).ToArray();
+        File.WriteAllLines(filePath, lines);
+        Console.WriteLine($"Saved {cards.Count} card(s) to {filePath}.");
+    }
 
     private static string ReadNonEmptyString(string prompt)
     {
