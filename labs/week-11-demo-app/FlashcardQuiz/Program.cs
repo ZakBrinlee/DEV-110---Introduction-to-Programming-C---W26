@@ -49,7 +49,7 @@ internal class Program
                     AddCard(cards);
                     break;
                 case "3":
-                    // RunQuiz(cards);
+                    RunQuiz(cards);
                     break;
                 case "4":
                     // SaveCards(filePath, cards);
@@ -122,7 +122,58 @@ internal class Program
 
         Console.WriteLine($"\nTotal: {cards.Count} card(s)");
     }
-    private static void RunQuiz(List<FlashCard> cards) { }
+    private static void RunQuiz(List<FlashCard> cards)
+    {
+        if (cards.Count == 0)
+        {
+            Console.WriteLine("No cards to quiz on. Add some first!");
+            return;
+        }
+
+        Console.WriteLine("\n--- Quiz Time! ---");
+        Console.WriteLine("Type your answer and press Enter. Answers are not case-sensitive.\n");
+
+        int correct = 0;
+        int total = cards.Count;
+
+        for (int i = 0; i < cards.Count; i++)
+        {
+            Console.WriteLine($"Card {i + 1} of {total}");
+            Console.WriteLine($". Q: {cards[i].Question}");
+            Console.Write(" Your Answer: ");
+
+            string userAnswer = Console.ReadLine() ?? "";
+
+            if (userAnswer.Trim().ToLower() == cards[i].Answer.Trim().ToLower())
+            {
+                Console.WriteLine("Correct! \u2713");
+                correct++;
+            }
+            else
+            {
+                Console.WriteLine($" Incorrect. The answer was: {cards[i].Answer}");
+            }
+
+            Console.WriteLine();
+        }
+
+        double percent = (double)correct / total * 100;
+        Console.WriteLine("\n--- Quiz Results! ---");
+        Console.WriteLine($"You got {correct} / {total} correct ({percent:F0}%).\n");
+
+        if (percent == 100)
+        {
+            Console.WriteLine("Perfect score! Great work!");
+        }
+        else if (percent >= 70)
+        {
+            Console.WriteLine("Nice job! Keep practicing.");
+        }
+        else
+        {
+            Console.WriteLine("Keep studying - you'll get there!");
+        }
+    }
     private static void SaveCards(string filePath, List<FlashCard> cards) { }
 
     private static string ReadNonEmptyString(string prompt)
