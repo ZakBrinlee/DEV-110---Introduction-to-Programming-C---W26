@@ -3,7 +3,7 @@
  * Instructor: Zak Brinlee
  * Term: Winter 2026
  *
- * Programmer: YourName
+ * Programmer: Rin Peralez
  * Assignment: Week 10: Habit Tracker (File I/O)
  *
  * What does this program do?:
