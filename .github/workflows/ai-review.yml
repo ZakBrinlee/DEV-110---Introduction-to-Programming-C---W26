@@ -42,6 +42,11 @@ jobs:
             01) ASSIGNMENT="week-01-hello-github" ;;
             02) ASSIGNMENT="week-02-calculator-lite" ;;
             03) ASSIGNMENT="week-03-profile-card" ;;
+            05) ASSIGNMENT="week-05-guess-the-number" ;;
+            06) ASSIGNMENT="week-06-text-menu-app" ;;
+            07) ASSIGNMENT="week-07-class-roster" ;;
+            08) ASSIGNMENT="week-08-mad-libs" ;;
+            09) ASSIGNMENT="week-09-methods-linq" ;;
             *)
               echo "::warning::Week $WEEK not configured - skipping AI review"
               echo "week=none" >> $GITHUB_OUTPUT

@@ -1,0 +1,11 @@
+What keyword defines a class in C#?,class
+What method displays text on a new line?,Console.WriteLine
+What data type stores whole numbers?,int
+What symbol starts a single-line comment in C#?,//
+What keyword creates a new object instance?,new
+What C# type stores true or false values?,bool
+What keyword exits a loop immediately?,break
+What data type stores decimal numbers?,double
+What keyword defines a method that returns nothing?,void
+What collection type grows dynamically in C#?,List
+What is a full name of bool?,boolean
